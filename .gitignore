@@ -8,7 +8,7 @@
 /*.log
 /*.csv
 /composer.phar
-/composer.lock
+
 
 /public/cmsmagazinedf7571d96c12572dd3308b5180e3c0b5.txt
 docker/nginx/default.conf

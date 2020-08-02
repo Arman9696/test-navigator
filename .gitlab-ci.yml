@@ -3,9 +3,8 @@ image: egnd/bxenv:7.1-fpm-dev
 stages:
 - check
 - build
-- analyze
-- deploy
-- test
+- analyze_1
+- analyze_2
 
 variables:
   GIT_STRATEGY: clone
@@ -53,12 +52,13 @@ build_dependencies:
   stage: build
   script:
   - envsubst < .env.dist > .env
-  - if ! [ -s ./vendor/codeception/codeception/codecept ]; then composer dependencies:dev:resolve; fi;
+  - if ! [ -s ./phan ]; then composer dependencies:dev:resolve; fi;
 
 ########################################################################################### analyze
 
-.analyze: &analyze
-  stage: analyze
+
+codestyle:
+  stage: analyze_1
   before_script:
   - rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini;
   artifacts:
@@ -66,24 +66,6 @@ build_dependencies:
     - report.*
     expire_in: 1 week
     when: on_failure
-  except:
-  - stage
-
-composer:
-  <<: *analyze
-  cache:
-    key: "dependenciesCache"
-    policy: pull
-    paths:
-    - vendor/
-    - public/local/modules/sprint.migration
-    - .env
-    - composer.lock
-  script:
-  - composer analyze:codestyle_ci
-
-codestyle:
-  <<: *analyze
   cache:
     key: "dependenciesCache"
     policy: pull
@@ -96,9 +78,23 @@ codestyle:
   - composer analyze:codestyle_ci
 
 code:
-  <<: *analyze
+  stage: analyze_2
+  before_script:
+  - rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini;
+  artifacts:
+    paths:
+    - report.*
+    expire_in: 1 week
+    when: on_failure
+  cache:
+    key: "dependenciesCache"
+    policy: pull
+    paths:
+    - vendor/
+    - public/local/modules/sprint.migration
+    - .env
+    - composer.lock
   script:
   - if ! [ -s ./vendor/egnd/bxsrc/globals.php ]; then composer require egnd/bxsrc "${BX_VERSION}"; fi;
   - mkdir -p public/bitrix/modules
   - composer analyze:code_ci
-  - git checkout .

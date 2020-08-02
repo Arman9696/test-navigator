@@ -11,7 +11,7 @@
         "pug-php/pug": "^3.2",
         "js-phpize/js-phpize-phug": "^2.1",
         "andreyryabin/sprint.migration": "dev-master",
-        "phpmailer/phpmailer": "^6.0"
+        "phpmailer/phpmailer": "6.0"
     },
     "extra": {
         "installer-paths": {
@@ -23,8 +23,7 @@
         "symfony/debug": "*",
         "sensiolabs/security-checker": "*",
         "squizlabs/php_codesniffer": "^3.0",
-        "phan/phan": "2.2.12",
-        "roave/security-advisories": "dev-master"
+        "phan/phan": "2.2.12"
     },
     "autoload": {
         "psr-4": {
@@ -42,7 +41,7 @@
         "analyze:code_ci": "@php -d mbstring.func_overload=0 vendor/bin/phan --project-root-directory=. --config-file=.ci/config.phan.php --output-mode=csv --output=report.phan.csv --unused-variable-detection --processes=1 --minimum-severity=0 --ignore-undeclared",
         "disable:xdebug": "if [ -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini ]; then mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled; fi",
         "enable:xdebug": "if [ -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled ]; then mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; fi",
-        "dependencies:dev:resolve": "/opt/php71/bin/php composer.phar install --no-progress --optimize-autoloader --profile --ignore-platform-reqs",
+        "dependencies:dev:resolve": "@composer install --no-progress --optimize-autoloader --profile --ignore-platform-reqs",
         "dependencies:prod:resolve": "@composer install --no-progress --optimize-autoloader --no-dev",
         "dependencies:dev:update": "@composer update --no-progress --optimize-autoloader --profile",
         "dependencies:prod:update": "@composer update --no-progress --optimize-autoloader --no-dev",
