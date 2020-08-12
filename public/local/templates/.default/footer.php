@@ -12,8 +12,7 @@ foreach ($options as $Item => $key) {
     if ($key == "") {
         $noEmpty = false;
         break;
-    }
-    else{
+    } else {
         $noEmpty = true;
     }
 }

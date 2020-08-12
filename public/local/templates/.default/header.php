@@ -7,14 +7,13 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 
 <?
 CModule::IncludeModule('iqdev.options');
-$options =  IQDEV\Options\Options::getPageOptions('headerNumber');
+$options  =  IQDEV\Options\Options::getPageOptions('headerNumber');
 $bNoEmpty = false;
 foreach ($options as $Item => $key) {
     if ($key == "") {
         $bNoEmpty = false;
         break;
-    }
-    else{
+    } else {
         $bNoEmpty = true;
     }
 }
