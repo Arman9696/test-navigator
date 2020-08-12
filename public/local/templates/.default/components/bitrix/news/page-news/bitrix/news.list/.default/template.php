@@ -3,7 +3,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 };
 ?>
-
+<section class="section mb-large">
+    <div class="container">
 <div class="grid-news grid-news--top">
 <? foreach ($arResult["ITEMS"] as $items =>$k) {?>
     <? if ($items <= 1) { ?>
@@ -40,8 +41,11 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             </div>
         </a></div>
 
-    <?} }?>
+    <?}}?>
+
 </div>
-<?=$arResult["NAV_STRING"];?>
+        <?=$arResult["NAV_STRING"];?>
+    </div>
+</section>
 
 

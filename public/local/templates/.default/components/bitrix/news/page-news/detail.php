@@ -16,8 +16,6 @@ $APPLICATION->IncludeComponent(
             'PROPERTY_PHOTO',
         ],
 
-
-
     ],
     $component
 );
