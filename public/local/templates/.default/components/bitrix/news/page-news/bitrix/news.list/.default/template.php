@@ -3,6 +3,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 };
 ?>
+<?
+require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
+?>
 <section class="section mb-large">
     <div class="container">
 <div class="grid-news grid-news--top">
