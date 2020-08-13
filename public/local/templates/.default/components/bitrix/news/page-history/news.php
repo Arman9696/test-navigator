@@ -5,9 +5,6 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 ?>
 <?php
 
-?>
-<?php
-
 $APPLICATION->IncludeComponent(
     "bitrix:news.list",
     "",

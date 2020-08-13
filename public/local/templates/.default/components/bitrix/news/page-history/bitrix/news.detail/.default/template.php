@@ -111,8 +111,8 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                     <?=$arResult["NAV_STRING"]?>
                 <? } ?>
             <?} elseif (strlen($arResult["DETAIL_TEXT"])>0) { ?>
-            <?=$arResult["DETAIL_TEXT"]?>
-        <? } ?>
+                <?=$arResult["DETAIL_TEXT"]?>
+            <? } ?>
 
             <?if (strlen($arResult["PROPERTIES"]["DETAIL"]["VALUE"]["TEXT"])>0) {?>
                 <div class="detail-content__image"><img class="img" src="https://source.unsplash.com/900x450"/></div>
@@ -124,8 +124,8 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
     </div>
         <div class="detail__item">
             <div class="detail-aside-banners">
-                <?foreach ($arResult['BANNERS'] as $arkey=>$aElement) {?>
-                    <? if($arkey == 0){?>
+                <?foreach ($arResult['BANNERS'] as $arkey => $aElement) {?>
+                    <? if ($arkey == 0) {?>
                     <div class="detail-aside-banners__item"><a class="banner" href="#">
                             <div class="banner__photo-wrapper">
                                 <?if ($aElement["DETAIL_PICTURE"] == null && $aElement["DETAIL_PICTURE"] == "") {?>

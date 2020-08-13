@@ -12,7 +12,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
 <div class="grid-news grid-news--top">
 <? foreach ($arResult["ITEMS"] as $arItems => $arKey) {?>
     <? if ($arItems == 0) { ?>
-        <div class="grid-news__item grid-news__item--full"><a class="news-card news-card--lg-column" href="<?=$arKey['DETAIL_PAGE_URL']?>">
+        <div class="grid-news__item grid-news__item--full"><a class="news-card news-card--lg-column"
+                                                              href="<?=$arKey['DETAIL_PAGE_URL']?>">
                 <div class="news-card__image news-card__image--lg-column">
                     <?if ($arKey["PREVIEW_PICTURE"]["SRC"]==null || $arKey["PREVIEW_PICTURE"]["SRC"] == "") { ?>
                     <img src="http://placehold.it/500x250/ffa" alt="С Днем Рождения!"/>
