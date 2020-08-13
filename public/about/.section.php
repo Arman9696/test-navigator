@@ -1,5 +1,5 @@
 <?
-$sSectionName = "О компании";
+$sSectionName = "Компания";
 $sChainTemplate = "/public/local/templates/.default/components/breadcrumb/.default/template.php";
 
 $arDirProperties = [

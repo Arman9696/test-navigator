@@ -17,7 +17,7 @@ $aMenuLinks = [
     ],
     [
         "Истории жителей",
-        "",
+        "/about/istorii-nashih-zhitelej/",
         [],
         [],
         ""
