@@ -14,15 +14,13 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     }
     $title = htmlspecialcharsex($arResult[$index]["TITLE"]);
     if ($arResult[$index]["LINK"] <> "") {
-        if($index+1 == $itemSize){
-            $strReturn .= '<span class="breadcrumbs__item" href="' . $arResult[$index]["LINK"] . '" title="' . $title . '">
-        ' . $title .'</span>';
+        if ($index+1 == $itemSize) {
+            $strReturn .= '<span class="breadcrumbs__item" href="'
+                . $arResult[$index]["LINK"] . '" title="' . $title . '">' . $title .'</span>';
+        } else {
+            $strReturn .= '<a class="breadcrumbs__item" href="' . $arResult[$index]["LINK"] .
+                '" title="' . $title . '">' . $title . '</a>';
         }
-        else {
-            $strReturn .= '<a class="breadcrumbs__item" href="' . $arResult[$index]["LINK"] . '" title="' . $title . '">
-        ' . $title . '</a>';
-        }
-
     } else {
         $strReturn .= $title;
     }

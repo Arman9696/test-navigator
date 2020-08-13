@@ -19,5 +19,3 @@ $APPLICATION->IncludeComponent(
     ],
     $component
 );
-?>
-
