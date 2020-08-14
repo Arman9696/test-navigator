@@ -86,8 +86,8 @@ foreach ($options as $Item => $key) {
                         <div class="line-unit__response"></div>
                     </form>
                 </div>
-                <div class="line-unit__item line-unit__item--socials"><a class="line-unit__social"
-                                                                         href="#" target="_blank">
+                <div class="line-unit__item line-unit__item--socials">
+                    <a class="line-unit__social" href="#" target="_blank">
                         <div class="icon icon--white icon--hover-primary">
                             <svg width="11" height="20" viewBox="0 0 11 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
