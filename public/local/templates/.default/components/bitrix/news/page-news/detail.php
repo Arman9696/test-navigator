@@ -15,6 +15,8 @@ $APPLICATION->IncludeComponent(
         'PROPERTY_CODE'=> [
             'PROPERTY_PHOTO',
         ],
+        "INCLUDE_IBLOCK_INTO_CHAIN"=>"N",
+        "ADD_SECTIONS_CHAIN"=>"N"
 
     ],
     $component

@@ -11,6 +11,8 @@ global $APPLICATION;
 
 $APPLICATION->SetTitle("О компании");
 ?>
-
+<?
+require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
+?>
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
