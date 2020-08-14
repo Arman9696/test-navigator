@@ -11,9 +11,10 @@ while ($ar_result = $Baners->GetNextElement()) {
     $Item[] = $ar_result->GetFields();
 }
 $arResult['BANNERS'] = $Item;
-$arResult["SOCIAL"] = IQDEV\Options\Options::getPageOptions('social');
-foreach ($arResult["SOCIAL"] as $arKey=>$value) {
-    if ($value == "" && $value = null){
+$arResult["SOCIAL"]  = IQDEV\Options\Options::getPageOptions('social');
+
+foreach ($arResult["SOCIAL"] as $arKey => $value) {
+    if ($value == "" && $value == null) {
         $value = '#';
     }
 }

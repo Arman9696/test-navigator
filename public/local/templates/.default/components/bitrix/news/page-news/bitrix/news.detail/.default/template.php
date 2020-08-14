@@ -29,7 +29,8 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                                 </path>
                             </svg>
                         </div>
-                    </a><a class="detail-header__share-icon" href="<?=$arResult["SOCIAL"]["vkontakte"]?>" target="_blank">
+                    </a>
+                    <a class="detail-header__share-icon" href="<?=$arResult["SOCIAL"]["vkontakte"]?>" target="_blank">
                         <div class="icon">
                             <svg width="25" height="14" viewBox="0 0 25 14" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +62,9 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                                 </path>
                             </svg>
                         </div>
-                    </a><a class="detail-header__share-icon" href="<?=$arResult["SOCIAL"]["odnoklassniki"]?>" target="_blank">
+                    </a>
+                    <a class="detail-header__share-icon" href="<?=$arResult["SOCIAL"]["odnoklassniki"]?>"
+                       target="_blank">
                         <div class="icon">
                             <svg width="12" height="20" viewBox="0 0 12 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +119,7 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                 <?=$arResult["NAV_STRING"]?>
             <? } ?>
         <?} elseif (strlen($arResult["DETAIL_TEXT"])>0) { ?>
-            <?=$arResult["DETAIL_TEXT"];?> </div>
+            <?=$arResult["DETAIL_TEXT"]?></div>
         <? } else { ?>
             <p><?=$arResult["PREVIEW_TEXT"]?></p></div>
         <?} ?>
