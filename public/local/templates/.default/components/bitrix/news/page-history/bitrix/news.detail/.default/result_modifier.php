@@ -1,5 +1,5 @@
 <?php
-
+CModule::IncludeModule('iqdev.options');
 $arSelect = ["ID", "IBLOCK_ID", "NAME", "DETAIL_PICTURE", "DETAIL_TEXT", "PROPERTY_*"];
 $arFilter = [
     "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('news-page'),   // id инфоблока
@@ -10,5 +10,11 @@ $Item     = [];
 while ($ar_result = $Baners->GetNextElement()) {
     $Item[] = $ar_result->GetFields();
 }
-
 $arResult['BANNERS'] = $Item;
+$arResult["SOCIAL"]  = IQDEV\Options\Options::getPageOptions('social');
+
+foreach ($arResult["SOCIAL"] as $arKey => $value) {
+    if ($value == "" && $value == null) {
+        $value = '#';
+    }
+}

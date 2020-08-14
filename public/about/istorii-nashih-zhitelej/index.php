@@ -10,6 +10,7 @@ global $APPLICATION;
 
 $APPLICATION->SetTitle("О компании");
 ?>
+
 <?global $arrFilter;
 $arrFilter = [
     'SECTION_ID' => \IQDEV\Base\Helper::getIblockSectionId('news-page','history'),
@@ -49,6 +50,7 @@ $arrFilter = [
             ["detail"=>"#ELEMENT_ID#/"],
         "USE_FILTER"=>"Y",
         "FILTER_NAME"=> '$arrFilter'
+
 
     )
 );?>
