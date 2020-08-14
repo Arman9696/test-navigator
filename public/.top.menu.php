@@ -22,15 +22,16 @@ $aMenuLinks = [
         ""
     ],
         [
-        "Сервисная компания",
-        "2",
+        "Обслуживающая компания
+",
+        "/obsluzhivayuschaya-kompaniya/",
         [],
         [],
         ""
     ],
         [
         "Танхаусы",
-        "https://gogle.com",
+        "https://xn--80ajaabhmtdas2o.xn--p1ai/",
         [],
         [],
         ""

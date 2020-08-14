@@ -17,14 +17,14 @@ $aMenuLinks = [
     ],
     [
         "Истории жителей",
-        "",
+        "/about/istorii-nashih-zhitelej/",
         [],
         [],
         ""
     ],
     [
         "Полезные статьи",
-        "",
+        "/about/blog/",
         [],
         [],
         ""
