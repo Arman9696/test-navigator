@@ -19,7 +19,7 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                 <? } ?>
                 <div class="detail-header__share">
                     <div class="detail-header__share-title">Поделиться:</div>
-                    <a class="detail-header__share-icon" href="#" target="_blank">
+                    <a class="detail-header__share-icon" href="<?=$arResult['SOCIAL']['facebook']?>" target="_blank">
                         <div class="icon">
                             <svg width="11" height="20" viewBox="0 0 11 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,8 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                                 </path>
                             </svg>
                         </div>
-                    </a><a class="detail-header__share-icon" href="#" target="_blank">
+                    </a>
+                    <a class="detail-header__share-icon" href="<?=$arResult['SOCIAL']['vkontakte']?>" target="_blank">
                         <div class="icon">
                             <svg width="25" height="14" viewBox="0 0 25 14" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +62,9 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                                 </path>
                             </svg>
                         </div>
-                    </a><a class="detail-header__share-icon" href="#" target="_blank">
+                    </a>
+                    <a class="detail-header__share-icon" href="<?=$arResult['SOCIAL']['odnoklassniki']?>"
+                       target="_blank">
                         <div class="icon">
                             <svg width="12" height="20" viewBox="0 0 12 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -114,8 +117,15 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                 <?=$arResult["DETAIL_TEXT"]?>
             <? } ?>
 
-            <?if (strlen($arResult["PROPERTIES"]["DETAIL"]["VALUE"]["TEXT"])>0) {?>
-                <div class="detail-content__image"><img class="img" src="https://source.unsplash.com/900x450"/></div>
+            <?if (strlen($arResult["PROPERTIES"]["DETAIL"]["~VALUE"]["TEXT"])>0) {?>
+                <?$iImage = $arResult["PROPERTIES"]["IMAGE"]["VALUE"]?>
+                <?if ($iImage != null) {?>
+            <div class="detail-content__image"><img class="img" src="<?=CFILE::GetPath($iImage)?>"/></div>
+                <?} else {?>
+                    <div class="detail-content__image">
+                        <img class="img" src="https://source.unsplash.com/900x450"/>
+                    </div>
+                <?}?>
                 <?=$arResult["PROPERTIES"]["DETAIL"]["~VALUE"]["TEXT"]?>
             <?}?>
         </div>

@@ -13,8 +13,11 @@ $APPLICATION->IncludeComponent(
         "ACTIVE_DATE_FORMAT" => $arParams["LIST_ACTIVE_DATE_FORMAT"],
         "FIELD_CODE" => $arParams["DETAIL_FIELD_CODE"],
         'PROPERTY_CODE'=> [
-            'PROPERTY_PHOTO',
+            'PHOTO',
+            'IMAGE'
         ],
+        "INCLUDE_IBLOCK_INTO_CHAIN"=>"N",
+        "ADD_SECTIONS_CHAIN"=>"N"
 
     ],
     $component
