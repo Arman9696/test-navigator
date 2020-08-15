@@ -8,7 +8,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
 $APPLICATION->SetTitle("404 Not Found");
 
-IQDEV\Base\Load::setTemplate('/local/markup/src/markup/page/errors/index.pug');
+//IQDEV\Base\Load::setTemplate('/local/markup/src/markup/page/errors/index.pug');
 
 if (CModule::IncludeModule('iqdev.options')){
 IQDEV\Base\Load::setProperty('errors', \iqdev\options\Options::getPageOptions('404_page'));
