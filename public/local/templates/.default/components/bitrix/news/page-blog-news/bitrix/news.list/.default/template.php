@@ -51,7 +51,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
                     </div>
                 </div>
                 <ul class="slider-controls__list glide__bullets" data-glide-el="controls[nav]">
-                    <? foreach ($arResult["ITEMS"] as $arKey => $arItems ) {?>
+                    <? foreach ($arResult["ITEMS"] as $arKey => $arItems) {?>
                         <li class="glide__bullet" data-glide-dir="=<?=$arKey?>"><?=$arKey?></li>
                     <?}?>
                 </ul>
