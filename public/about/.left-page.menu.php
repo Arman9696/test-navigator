@@ -2,31 +2,30 @@
 
 $aMenuLinks = [
     [
-        "Компания",
+        "Новости",
         "/about/",
         [],
-        [],
-        ""
-    ],
-    [
-        "Новости",
-        "/about/our-news/",
-        [],
-        [],
+        [
+            ['tabs'=>'news']
+        ],
         ""
     ],
     [
         "Истории жителей",
-        "/about/istorii-nashih-zhitelej/",
+        "/about/",
         [],
-        [],
+        [
+            ['tabs'=>'stories']
+        ],
         ""
     ],
     [
         "Полезные статьи",
-        "/about/blog/",
+        "/about/",
         [],
-        [],
+        [
+            ['tabs'=>'articles']
+        ],
         ""
     ],
 ];
