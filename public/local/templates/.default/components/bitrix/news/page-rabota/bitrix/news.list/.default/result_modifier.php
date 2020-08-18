@@ -14,7 +14,7 @@ $arSelect = [
 $arFilter = [
     "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('WHY'),
 ];
-$oList   = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter, false, ["nPageSize" => 50], $arSelect);
+$oList    = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter, false, ["nPageSize" => 50], $arSelect);
 $Item     = [];
 $index    = 0;
 
