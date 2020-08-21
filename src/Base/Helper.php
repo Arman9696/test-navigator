@@ -42,8 +42,7 @@ class Helper
      *
      * @throws \Bitrix\Main\LoaderException
      */
-
-    public static function getCRubricId($sCode = '')
+    public static function getCrubricId($sCode = '')
     {
         \Bitrix\Main\Loader::includeModule("subscribe");
         $iID    = null;
@@ -62,7 +61,6 @@ class Helper
 
         return (int) $iID;
     }
-
 
     /**
      * Получение ID раздела информационного блока

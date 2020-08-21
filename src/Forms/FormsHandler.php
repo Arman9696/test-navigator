@@ -67,34 +67,33 @@ class FormsHandler
      * Проверяет на наличие уникальности свойства в инфоблоке
      *
      * @param $sIblockCode
-     * @param $aIblockFields
-     * @param $aIblockProperties
+     * @param $aProperties
+     * @param $aProperties_Value
+     * @param $iValue
      *
      * @return mixed
      */
-    private static function issetIblockElement($sIblockCode, $aProperties, $aProperties_Value, $Value)
+    private static function issetIblockElement($sIblockCode, $aProperties, $aProperties_Value, $iValue)
     {
         $iblockId = \IQDEV\Base\Helper::getIblockId($sIblockCode);
-        $No_Empty = true;
-        $aFields = [
+        $bIsset   = true;
+        $aFields  = [
             'IBLOCK_ID' => $iblockId
         ];
         $Elements = \CIBlockElement::GetList([["SORT" => "ASC"]], $aFields, false, ["nPageSize" => 50]);
 
-        while (($arElement = $Elements->GetNextElement()) && $No_Empty != false) {
+        while (($arElement = $Elements->GetNextElement()) && $bIsset != false) {
             $Element = $arElement->GetProperties(false, [$aProperties => $aProperties_Value]);
             $Element = $Element[$aProperties_Value]['VALUE'];
-            if ($Element == $Value) {
-                $No_Empty = false;
-
-            } elseif ($Element != $Value) {
-                $No_Empty = true;
+            if ($Element == $iValue) {
+                $bIsset = false;
+            } elseif ($Element != $iValue) {
+                $bIsset = true;
             }
         }
 
 
-        return $No_Empty;
-
+        return $bIsset;
     }
 
     /**
@@ -174,6 +173,13 @@ class FormsHandler
         return $arResult;
     }
 
+    /**
+     * Записывает заявки на подписку
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
     public static function subscribeNewsAjaxAction(array $aData)
     {
         try {
@@ -187,18 +193,19 @@ class FormsHandler
 
             global $USER;
 
-            $arFields = array(
+            $arFields = [
                 "USER_ID" => $USER->IsAuthorized() ? $USER->GetID() : false,
                 "FORMAT" => "html",
                 "EMAIL" => $sEmail,
                 "ACTIVE" => "Y",
-                "RUB_ID" => Helper::getCRubricId('subsription')
-            );
+                "RUB_ID" => Helper::getCrubricId('subsription')
+            ];
+
             $subscr = new CSubscription;
 
             //can add without authorization
             $ID = $subscr->Add($arFields);
-            if ((int)$ID < 0) {
+            if ($ID <= 0) {
                 throw new \RuntimeException($subscr->LAST_ERROR);
             }
 
@@ -219,6 +226,13 @@ class FormsHandler
         return $aResult;
     }
 
+    /**
+     * Записывает заявки на ипотеку
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
     public static function calculatebuyerAjaxAction(array $aData)
     {
         try {
@@ -226,14 +240,17 @@ class FormsHandler
 
             global $USER;
             $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
-            $aData['name'] = filter_var($aData['name'], FILTER_SANITIZE_STRING);
-            $iCost = filter_var($aData['cost'], FILTER_SANITIZE_NUMBER_INT);
-            $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
-            $iTerm = filter_var($aData['term'], FILTER_SANITIZE_NUMBER_INT);
-            $fCalculatedRate = filter_var($aData['calculatedRate'], FILTER_SANITIZE_STRING);
-            $sBank = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
-            $sIs_member = "";
+            $iCost  = filter_var($aData['cost'], FILTER_SANITIZE_NUMBER_INT);
+            $iTerm  = filter_var($aData['term'], FILTER_SANITIZE_NUMBER_INT);
+            $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
+
+            $sIs_member    = "";
             $Selected_Bank = "";
+
+            $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
+
+            $aData['name']   = filter_var($aData['name'], FILTER_SANITIZE_STRING);
+            $fCalculatedRate = filter_var($aData['calculatedRate'], FILTER_SANITIZE_STRING);
 
             $oIblock_id = \IQDEV\Base\Helper::getIblockId('bank');
 
@@ -243,10 +260,14 @@ class FormsHandler
                     "CODE" => $sBank
                 ];
                 $arSelect = ["ID"];
-                $oId_Element = \CIBlockElement::GetList(["SORT" => "ASC"], $arFilter, false,
-                    ["nPageSize" => 50], $arSelect)->GetNextElement()->GetFields();
-                $Selected_Bank = $oId_Element;
 
+                $oId_Element = \CIBlockElement::GetList(["SORT" => "ASC"],
+                    $arFilter,
+                    false,
+                    ["nPageSize" => 50],
+                    $arSelect)->GetNextElement()->GetFields();
+
+                $Selected_Bank = $oId_Element;
             }
 
             if ($aData['is_member'] == false) {
@@ -283,11 +304,9 @@ class FormsHandler
 
             $ID = self::addIblockElement('ras', $aData, $aProperties);
 
-            if ((int)$ID < 0) {
+            if ($ID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
-
-
         } catch (\Throwable $e) {
             $aResult = [
                 'status' => false,
@@ -295,6 +314,5 @@ class FormsHandler
             ];
         }
         return $aResult;
-
     }
 }

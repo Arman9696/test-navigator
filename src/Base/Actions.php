@@ -135,13 +135,24 @@ class Actions
         $this->setAjaxResponse($this->oRequest);
     }
 
+    /**
+     * Обработка формы подписки
+     *
+     * @return void
+     */
     public function formSubscribeAjaxAction()
     {
         $aResult = FormsHandler::subscribeNewsAjaxAction($this->oRequest);
         $this->setAjaxResponse($aResult);
     }
 
-    public function formCalculationAjaxAction(){
+    /**
+     * Обработка формы калькулятор
+     *
+     * @return void
+     */
+    public function formCalculationAjaxAction()
+    {
         $aResult = FormsHandler::calculatebuyerAjaxAction($this->oRequest);
         $this->setAjaxResponse($aResult);
     }

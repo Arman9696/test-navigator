@@ -4,7 +4,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 }
 ?>
 <?
-require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/buyer_menu.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/_inc/buyer_menu.php';
 $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
 
 ?>
@@ -20,23 +20,28 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
                 </div>
             </div>
             <div class="modal__input">
-                <div class="input js-input"><input class="input__field" type="text" name="email" placeholder="Электронная почта"
+                <div class="input js-input"><input class="input__field" type="text" name="email"
+                                                   placeholder="Электронная почта"
                                                    data-validate="required,email"/>
                     <div class="input__error"></div>
                 </div>
             </div>
-            <input type="hidden" name="cost" data-modal-import="cost"/><input type="hidden" name="first-pay"
-                                                                              data-modal-import="first-pay"/><input
+            <input type="hidden" name="cost" data-modal-import="cost"/>
+            <input type="hidden" name="first-pay"
+                   data-modal-import="first-pay"/><input
                     type="hidden" name="term" data-modal-import="term"/><input type="hidden" name="is-member"
-                                                                               data-modal-import="is-member"/><input type="hidden"
-                                                                                                                     name="selectedBank"
-                                                                                                                     data-modal-import="selectedBank"/><input
+                                                                               data-modal-import="is-member"/><input
+                    type="hidden"
+                    name="selectedBank"
+                    data-modal-import="selectedBank"/><input
                     type="hidden" name="calculatedRate" data-modal-import="calculatedRate"/>
             <div class="modal__checkbox">
-                <div class="checkbox js-checkbox"><label class="checkbox__label"><input class="checkbox__field" type="checkbox"
+                <div class="checkbox js-checkbox"><label class="checkbox__label"><input class="checkbox__field"
+                                                                                        type="checkbox"
                                                                                         data-validate="required"/>
                         <div class="checkbox__custom checkbox__custom--border"></div>
-                        <div class="checkbox__text">Подтверждаю согласие с<a class="checkbox__link" href="#" target="_blank">
+                        <div class="checkbox__text">Подтверждаю согласие с<a class="checkbox__link" href="#"
+                                                                             target="_blank">
                                 политикой обработки персональных данных</a></div>
                     </label>
                     <div class="checkbox__error"></div>
@@ -52,11 +57,11 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
 <section class="section mt-medium mb-medium">
     <div class="container">
         <div class="separate-paragraph">
-            <div class="separate-paragraph__title"><h1><?=$options['separateParagraphTitle']?></h1></div>
+            <div class="separate-paragraph__title"><h1><?= $options['separateParagraphTitle'] ?></h1></div>
             <div class="separate-paragraph__divider"></div>
             <div class="separate-paragraph__text-wrapper">
                 <div class="separate-paragraph__text">
-                    <?=$options['separateParagraphText']?>
+                    <?= $options['separateParagraphText'] ?>
                 </div>
             </div>
         </div>
@@ -65,79 +70,79 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
 <section class="section mb-medium">
     <div class="container">
         <div class="work-stage-container">
-            <?foreach ($arResult['ITEMS'] as $arElement) {?>
-            <div class="work-stage">
-                <div class="work-stage__header">
-                    <div class="work-stage__icon">
-                        <img src="<?=$arElement['PREVIEW_PICTURE']['SRC']?>"/>
+            <? foreach ($arResult['ITEMS'] as $arElement) { ?>
+                <div class="work-stage">
+                    <div class="work-stage__header">
+                        <div class="work-stage__icon">
+                            <img src="<?= $arElement['PREVIEW_PICTURE']['SRC'] ?>"/>
+                        </div>
+                    </div>
+                    <div class="work-stage__text">
+                        <div class="work-stage__title">
+                            <?= $arElement['NAME'] ?>
+                        </div>
+                        <div class="work-stage__description">
+                            <?= $arElement['PREVIEW_TEXT'] ?>
+                        </div>
                     </div>
                 </div>
-                <div class="work-stage__text">
-                    <div class="work-stage__title">
-                        <?=$arElement['NAME']?>
-                    </div>
-                    <div class="work-stage__description">
-                        <?=$arElement['PREVIEW_TEXT']?>
-                    </div>
-                </div>
-            </div>
-            <?}?>
+            <? } ?>
         </div>
     </div>
 </section>
 <section class="section mt-medium mb-medium" id="calc">
     <div class="container">
-        <div class="section-header"><?=$options['Send']?></div>
+        <div class="section-header"><?= $options['Send'] ?></div>
         <div class="tabs js-tabs">
 
 
             <div class="tabs__contents">
-                <?$APPLICATION->IncludeComponent(
+                <? $APPLICATION->IncludeComponent(
                     "bitrix:news",
                     "page-ipoteka-bank",
-                        [
-                            "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                            "DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
-                            "DETAIL_PAGER_TEMPLATE" => "",
-                            "DETAIL_PAGER_TITLE" => "Страница",
-                            "DETAIL_PROPERTY_CODE" => ["",""],
-                            "DETAIL_SET_CANONICAL_URL" => "N",
-                            "DISPLAY_BOTTOM_PAGER" => "Y",
-                            "DISPLAY_DATE" => "N",
-                            "DISPLAY_NAME" => "Y",
-                            "DISPLAY_TOP_PAGER" => "N",
-                            "HIDE_LINK_WHEN_NO_DETAIL" => "N",
-                            "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('bank'),
-                            "IBLOCK_TYPE" => "content",
-                            "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                            "LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
-                            "NEWS_COUNT" => "4",
-                            "PAGER_BASE_LINK_ENABLE" => "N",
-                            "PAGER_DESC_NUMBERING" => "N",
-                            "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-                            "PAGER_SHOW_ALL" => "N",
-                            "PAGER_SHOW_ALWAYS" => "N",
-                            "PAGER_TEMPLATE" => ".default",
-                            "PAGER_TITLE" => "Новости",
-                            "PREVIEW_TRUNCATE_LEN" => "",
-                            "SEF_FOLDER" => "/about/our-news/",
-                            "SEF_MODE" => "Y",
-                            "SEF_URL_TEMPLATES" =>
-                                ["detail"=>"#ELEMENT_ID#/"],
-                            "SORT_BY1"=> "ID",
-                            "SORT_ORDER1"=> "ASC",
-                            'LIST_PROPERTY_CODE'=> [
-                                'CONTRIBUTION',
-                                'OFFER',
-                                'TERM',
-                                'SUM',
-                                'CONDITIONS'
-                            ],
+                    [
+                        "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                        "DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
+                        "DETAIL_PAGER_TEMPLATE" => "",
+                        "DETAIL_PAGER_TITLE" => "Страница",
+                        "DETAIL_PROPERTY_CODE" => ["", ""],
+                        "DETAIL_SET_CANONICAL_URL" => "N",
+                        "DISPLAY_BOTTOM_PAGER" => "Y",
+                        "DISPLAY_DATE" => "N",
+                        "DISPLAY_NAME" => "Y",
+                        "DISPLAY_TOP_PAGER" => "N",
+                        "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                        "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('bank'),
+                        "IBLOCK_TYPE" => "content",
+                        "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                        "LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
+                        "NEWS_COUNT" => "4",
+                        "PAGER_BASE_LINK_ENABLE" => "N",
+                        "PAGER_DESC_NUMBERING" => "N",
+                        "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                        "PAGER_SHOW_ALL" => "N",
+                        "PAGER_SHOW_ALWAYS" => "N",
+                        "PAGER_TEMPLATE" => ".default",
+                        "PAGER_TITLE" => "Новости",
+                        "PREVIEW_TRUNCATE_LEN" => "",
+                        "SEF_FOLDER" => "/about/our-news/",
+                        "SEF_MODE" => "Y",
+                        "SEF_URL_TEMPLATES" =>
+                            ["detail" => "#ELEMENT_ID#/"],
+                        "SORT_BY1" => "ID",
+                        "SORT_ORDER1" => "ASC",
+                        'LIST_PROPERTY_CODE' => [
+                            'CONTRIBUTION',
+                            'OFFER',
+                            'TERM',
+                            'SUM',
+                            'CONDITIONS'
+                        ],
 
-                        ]
-                );?>
+                    ]
+                ); ?>
+            </div>
         </div>
-    </div>
 </section>
 <section class="section section--overflow-hidden pt-medium pb-large">
     <div class="container">
@@ -145,17 +150,17 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
             <div class="info-section__content">
                 <div class="info-section__header">
                     <div class="section-header">
-                        <?=$options['infoSection']['header']?>
+                        <?= $options['infoSection']['header'] ?>
                     </div>
                 </div>
                 <ul class="info-section__list">
                     <li class="info-section__list-item">
-                        <?=$options['infoSection']['list']['0']['text']?>
+                        <?= $options['infoSection']['list']['0']['text'] ?>
                     </li>
-                    <li class="info-section__list-item"><?=$options['infoSection']['list']['1']['text']?>
+                    <li class="info-section__list-item"><?= $options['infoSection']['list']['1']['text'] ?>
                         <div class="info-section__tooltip">
                             <div class="tooltip-trigger js-tooltip-trigger"
-                                 data-tooltip-content="<?=$options['infoSection']['list']['1']['tooltip']?>">
+                                 data-tooltip-content="<?= $options['infoSection']['list']['1']['tooltip'] ?>">
                                 <svg class="tooltip__trigger" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.9961 6.14062C11.9961 6.29557 11.9665 6.44141 11.9072 6.57812C11.848
@@ -178,17 +183,17 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
                                     14.9225 8.99512 14.8223 8.8584 14.6855C8.72624 14.5488 8.62142 14.3757 8.54395
                                     14.166C8.46647 13.9564 8.42773 13.7035 8.42773 13.4072C8.42773 13.2796 8.43685
                                     13.1406 8.45508 12.9902C8.47331 12.8353 8.50065 12.6689 8.53711 12.4912L9.4873 8Z"
-                                            fill="#2983D4">
+                                          fill="#2983D4">
                                     </path>
                                     <circle cx="10" cy="10" r="9.5" stroke="#2983D4"></circle>
                                 </svg>
                             </div>
                         </div>
                     </li>
-                    <li class="info-section__list-item"><?=$options['infoSection']['list']['2']['text']?>
+                    <li class="info-section__list-item"><?= $options['infoSection']['list']['2']['text'] ?>
                         <div class="info-section__tooltip">
                             <div class="tooltip-trigger js-tooltip-trigger"
-                                 data-tooltip-content="<?=$options['infoSection']['list']['1']['tooltip']?>">
+                                 data-tooltip-content="<?= $options['infoSection']['list']['1']['tooltip'] ?>">
                                 <svg class="tooltip__trigger" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.9961 6.14062C11.9961 6.29557 11.9665 6.44141 11.9072 6.57812C11.848
@@ -211,20 +216,20 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
                                     8.99512 14.8223 8.8584 14.6855C8.72624 14.5488 8.62142 14.3757 8.54395
                                     14.166C8.46647 13.9564 8.42773 13.7035 8.42773 13.4072C8.42773 13.2796 8.43685
                                     13.1406 8.45508 12.9902C8.47331 12.8353 8.50065 12.6689 8.53711 12.4912L9.4873 8Z"
-                                            fill="#2983D4">
+                                          fill="#2983D4">
                                     </path>
                                     <circle cx="10" cy="10" r="9.5" stroke="#2983D4"></circle>
                                 </svg>
                             </div>
                         </div>
                     </li>
-                    <li class="info-section__list-item"><?=$options['infoSection']['list']['3']['text']?></li>
-                    <li class="info-section__list-item"><?=$options['infoSection']['list']['4']['text']?></li>
+                    <li class="info-section__list-item"><?= $options['infoSection']['list']['3']['text'] ?></li>
+                    <li class="info-section__list-item"><?= $options['infoSection']['list']['4']['text'] ?></li>
                 </ul>
                 <div class="info-section__description">
-                    <?=$options['infoSection']['description']?>
+                    <?= $options['infoSection']['description'] ?>
                 </div>
             </div>
-            <img class="info-section__image" src="<?=$options['infoSection']['image']?>" alt="alt"/></div>
+            <img class="info-section__image" src="<?= $options['infoSection']['image'] ?>" alt="alt"/></div>
     </div>
 </section>
