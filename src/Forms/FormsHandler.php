@@ -243,7 +243,6 @@ class FormsHandler
             $iTerm  = filter_var($aData['term'], FILTER_SANITIZE_NUMBER_INT);
             $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
 
-            $sIs_member    = "";
             $Selected_Bank = "";
 
             $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
@@ -269,6 +268,13 @@ class FormsHandler
                 $Selected_Bank = $oId_Element;
             }
 
+            if ($aData['is_member'] == false) {
+                $sIs_member = "Не участник";
+            } else {
+                $sIs_member = "Является участником";
+            }
+
+
             $aProperties = [
                 'EMAIL' => $sEmail,
                 'COST' => $iCost,
@@ -280,12 +286,6 @@ class FormsHandler
 
             ];
 
-            if ($aData['is_member'] == false) {
-                $sIs_member = "Не участник";
-            } else {
-                $sIs_member = "Является участником";
-            }
-
             $aResult = [
                 'status' => true,
                 'name' => $aData['name'],
@@ -296,6 +296,7 @@ class FormsHandler
                 'calculatedRate' => $fCalculatedRate,
                 'selected_Bank' => $sBank
             ];
+
 
             if (!self::issetIblockElement('ras', 'CODE', 'EMAIL', $sEmail)) {
                 throw new \RuntimeException('Такая почта уже есть');
