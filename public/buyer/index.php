@@ -54,3 +54,5 @@ $APPLICATION->SetTitle("Global");
 );?>
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
+
+

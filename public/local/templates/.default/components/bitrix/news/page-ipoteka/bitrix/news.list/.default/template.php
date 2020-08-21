@@ -8,7 +8,47 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/buyer_menu.php';
 $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
 
 ?>
-
+<div class="modal js-modal" data-modal-open="calculation">
+    <div class="modal__content">
+        <div class="modal__title">Рассчитать ежемесячный платёж</div>
+        <div class="modal__description">Оставьте контактные данные, и мы вам перезвоним!</div>
+        <form class="modal__form js-form" action="/?ajaxAction=formCalculation" data-name="calculation">
+            <div class="modal__input">
+                <div class="input js-input"><input class="input__field" type="text" name="name" placeholder="Имя"
+                                                   data-validate="required,name"/>
+                    <div class="input__error"></div>
+                </div>
+            </div>
+            <div class="modal__input">
+                <div class="input js-input"><input class="input__field" type="text" name="email" placeholder="Электронная почта"
+                                                   data-validate="required,email"/>
+                    <div class="input__error"></div>
+                </div>
+            </div>
+            <input type="hidden" name="cost" data-modal-import="cost"/><input type="hidden" name="first-pay"
+                                                                              data-modal-import="first-pay"/><input
+                    type="hidden" name="term" data-modal-import="term"/><input type="hidden" name="is-member"
+                                                                               data-modal-import="is-member"/><input type="hidden"
+                                                                                                                     name="selectedBank"
+                                                                                                                     data-modal-import="selectedBank"/><input
+                    type="hidden" name="calculatedRate" data-modal-import="calculatedRate"/>
+            <div class="modal__checkbox">
+                <div class="checkbox js-checkbox"><label class="checkbox__label"><input class="checkbox__field" type="checkbox"
+                                                                                        data-validate="required"/>
+                        <div class="checkbox__custom checkbox__custom--border"></div>
+                        <div class="checkbox__text">Подтверждаю согласие с<a class="checkbox__link" href="#" target="_blank">
+                                политикой обработки персональных данных</a></div>
+                    </label>
+                    <div class="checkbox__error"></div>
+                </div>
+            </div>
+            <div class="modal__response"></div>
+            <div class="modal__button">
+                <button class="button button--primary" type="submit"><span>Отправить</span></button>
+            </div>
+        </form>
+    </div>
+</div>
 <section class="section mt-medium mb-medium">
     <div class="container">
         <div class="separate-paragraph">
@@ -49,13 +89,8 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
     <div class="container">
         <div class="section-header"><?=$options['Send']?></div>
         <div class="tabs js-tabs">
-            <div class="tabs__inner tabs__inner--offset">
-                <div class="tabs-navigation js-tabs-navigation">
-                    <div class="tabs-navigation__active"></div>
-                    <div class="tabs-navigation__item active" data-tab="sber">Сбербанк</div>
-                    <div class="tabs-navigation__item" data-tab="zapsib">Запсибкомбанк</div>
-                </div>
-            </div>
+
+
             <div class="tabs__contents">
                 <?$APPLICATION->IncludeComponent(
                     "bitrix:news",

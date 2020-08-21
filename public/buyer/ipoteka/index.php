@@ -9,6 +9,7 @@ $APPLICATION->SetPageProperty("title",
 global $APPLICATION;
 $APPLICATION->SetTitle("Global");
 ?>
+
 <?$APPLICATION->IncludeComponent(
     "bitrix:news",
     "page-ipoteka",

@@ -4,7 +4,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 }
 ?>
 <?
-require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/buyer_menu.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/ipoteka-menu.php';
 ?>
 <div class="tabs__content js-tabs__content active" data-tab-content="sber">
     <div class="mortgage js-mortgage">

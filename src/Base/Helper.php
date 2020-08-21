@@ -34,6 +34,37 @@ class Helper
     }
 
     /**
+     * Get CRubricID by code
+     *
+     * @param $sCode
+     *
+     * @return int
+     *
+     * @throws \Bitrix\Main\LoaderException
+     */
+
+    public static function getCRubricId($sCode = '')
+    {
+        \Bitrix\Main\Loader::includeModule("subscribe");
+        $iID    = null;
+        $oCache = \Bitrix\Main\Data\Cache::createInstance();
+        if ($oCache->initCache(86400, 'CRubric_id_g'.$sCode, '/')) {
+            $iID = $oCache->getVars();
+        } elseif ($oCache->startDataCache()) {
+            $res = \CRubric::GetList([], ['CODE' => $sCode, 'CHECK_PERMISSIONS' => 'N']);
+            $ob  = $res->GetNext();
+            if ($ob) {
+                $iID = (int) $ob['ID'];
+            }
+
+            $oCache->endDataCache($iID);
+        }
+
+        return (int) $iID;
+    }
+
+
+    /**
      * Получение ID раздела информационного блока
      *
      * @param string $iBlockCode        Код инфоблока
