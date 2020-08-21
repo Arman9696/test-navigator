@@ -5,7 +5,6 @@ namespace IQDEV\Forms;
 use CModule;
 use CSubscription;
 use IQDEV\Base\Helper;
-use NumberFormatter;
 
 class FormsHandler
 {
@@ -270,12 +269,6 @@ class FormsHandler
                 $Selected_Bank = $oId_Element;
             }
 
-            if ($aData['is_member'] == false) {
-                $sIs_member = "Не участник";
-            } else {
-                $sIs_member = "Является участником";
-            }
-
             $aProperties = [
                 'EMAIL' => $sEmail,
                 'COST' => $iCost,
@@ -286,6 +279,12 @@ class FormsHandler
                 'IS_MEMBER' => $sIs_member
 
             ];
+
+            if ($aData['is_member'] == false) {
+                $sIs_member = "Не участник";
+            } else {
+                $sIs_member = "Является участником";
+            }
 
             $aResult = [
                 'status' => true,
