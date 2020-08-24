@@ -4,9 +4,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 };
 
 ?>
+<<<<<<< Updated upstream
 <?
 require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
 ?>
+=======
+>>>>>>> Stashed changes
 <div class="tabs__content js-tabs__content" data-tab-content="stories">
     <div class="slider glide js-slider">
         <div class="slider__body">
