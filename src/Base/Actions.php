@@ -164,16 +164,15 @@ class Actions
      */
     public function formReviewAjaxAction()
     {
-
         $aResult = FormsHandler::reviewAjaxAction($this->oRequest);
         $this->setAjaxResponse($aResult);
     }
+
     /**
      * Обработка формы на вопросов в базe страница -service
      *
      * @return void
      */
-
     public function formQuestionServiceAjaxAction()
     {
         $aResult = FormsHandler::questionserviceAjaxAction($this->oRequest);

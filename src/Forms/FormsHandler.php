@@ -369,7 +369,8 @@ class FormsHandler
      *
      * @return mixed
      */
-    public static function questionserviceAjaxAction(array $aData){
+    public static function questionserviceAjaxAction(array $aData)
+    {
 
         try {
             //TODO logics
@@ -378,9 +379,9 @@ class FormsHandler
             $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
             $sPhone = filter_var($aData['phone'], FILTER_SANITIZE_STRING);
 
-            $sQuestion    = filter_var($aData['question'],FILTER_SANITIZE_STRING);
-            $sVillageName = filter_var($aData['villageName'],FILTER_SANITIZE_STRING);
-            $iAreaNumber  = filter_var($aData['areaNumber'],FILTER_SANITIZE_STRING);
+            $sQuestion    = filter_var($aData['question'], FILTER_SANITIZE_STRING);
+            $sVillageName = filter_var($aData['villageName'], FILTER_SANITIZE_STRING);
+            $iAreaNumber  = filter_var($aData['areaNumber'], FILTER_SANITIZE_STRING);
 
             $aProperties = [
                 'EMAIL'         =>$sEmail,
@@ -405,8 +406,7 @@ class FormsHandler
             if ($ID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
-
-        }catch (\Throwable $e){
+        } catch (\Throwable $e) {
             $aResult = [
                 'status'  =>false,
                 'message' =>$e->getMessage(),
@@ -415,6 +415,13 @@ class FormsHandler
         return $aResult;
     }
 
+    /**
+     * Форма обратной связи по вопросам
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
     public static function questionAjaxAction(array $aData)
     {
         try { //TODO logics
@@ -438,8 +445,7 @@ class FormsHandler
                 'name' =>$aData['name'],
                 'phone' =>$aData['phone']
             ];
-
-        }catch (\Throwable $e){
+        } catch (\Throwable $e) {
             $aResult = [
                 'status'  =>false,
                 'message' =>$e->getMessage(),
