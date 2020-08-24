@@ -251,7 +251,7 @@ $options = IQDEV\Options\Options::getPageOptions('ok_page');
                                     <?=$arElement['NAME']?>
                                 </div>
                                 <div class="contacts-person__position">
-                                    <?$arElement['PREVIEW_TEXT']?>
+                                    <?=$arElement['PREVIEW_TEXT']?>
                                 </div>
                                 <ul class="contacts-person__contact-group">
                                     <?foreach ($arElement['PROPERTIES']['PHONE']['VALUE'] as $strPhone) {?>

@@ -55,6 +55,8 @@ class FormsHandler
             'IBLOCK_ID' => $iblockId,
             'NAME' => $aIblockFields['name'],
             'PROPERTY_VALUES' => $aIblockProperties,
+            'PREVIEW_TEXT'    =>$aIblockFields['PREVIEW_TEXT'],
+            'PREVIEW_PICTURE' =>$aIblockFields['PREVIEW_PICTURE'],
         ];
 
         $iItemId = $oEl->Add($aFields);
@@ -243,7 +245,7 @@ class FormsHandler
             $iTerm  = filter_var($aData['term'], FILTER_SANITIZE_NUMBER_INT);
             $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
 
-            $sIs_member    = "";
+
             $Selected_Bank = "";
 
             $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
@@ -269,6 +271,13 @@ class FormsHandler
                 $Selected_Bank = $oId_Element;
             }
 
+            if ($aData['is_member'] == false) {
+                $sIs_member = "Не участник";
+            } else {
+                $sIs_member = "Является участником";
+            }
+
+
             $aProperties = [
                 'EMAIL' => $sEmail,
                 'COST' => $iCost,
@@ -280,11 +289,6 @@ class FormsHandler
 
             ];
 
-            if ($aData['is_member'] == false) {
-                $sIs_member = "Не участник";
-            } else {
-                $sIs_member = "Является участником";
-            }
 
             $aResult = [
                 'status' => true,
@@ -303,6 +307,49 @@ class FormsHandler
 
             $ID = self::addIblockElement('ras', $aData, $aProperties);
 
+            if ($ID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+        } catch (\Throwable $e) {
+            $aResult = [
+                'status' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
+        return $aResult;
+    }
+    /**
+     * Записывает отзывы
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function reviewAjaxAction(array $aData)
+    {
+        try {
+            //Todo logics
+
+            global $USER;
+            $aProperties = [
+                'PREVIEW_TEXT'=>$aData['review'],
+                'PHONE' =>$aData['phone']
+            ];
+
+            $aFields = [
+                'name' => $aData['name'],
+                'PREVIEW_TEXT' =>$aData['review'],
+                'PREVIEW_PICTURE' =>$_FILES['file']
+            ];
+
+            $aResult = [
+                'status' => true,
+                'name'   =>$aData['name'],
+                'phone'  =>$aData['phone'],
+                'review' =>$aData['review'],
+            ];
+
+            $ID = self::addIblockElement('reviews', $aFields, $aProperties);
             if ($ID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
