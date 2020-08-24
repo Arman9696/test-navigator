@@ -2,6 +2,10 @@
 
 namespace IQDEV\Forms;
 
+use CModule;
+use CSubscription;
+use IQDEV\Base\Helper;
+
 class FormsHandler
 {
     /**
@@ -41,7 +45,7 @@ class FormsHandler
      *
      * @return mixed
      */
-    private static function addIblockElement($sIblockCode, $aIblockFields, $aIblockProperties)
+    private static function addIblockElement($sIblockCode, array $aIblockFields, array $aIblockProperties)
     {
         $iblockId = \IQDEV\Base\Helper::getIblockId($sIblockCode);
 
@@ -51,11 +55,46 @@ class FormsHandler
             'IBLOCK_ID' => $iblockId,
             'NAME' => $aIblockFields['name'],
             'PROPERTY_VALUES' => $aIblockProperties,
+            'PREVIEW_TEXT'    =>$aIblockFields['PREVIEW_TEXT'],
+            'PREVIEW_PICTURE' =>$aIblockFields['PREVIEW_PICTURE'],
         ];
 
         $iItemId = $oEl->Add($aFields);
 
         return $iItemId;
+    }
+
+    /**
+     * Проверяет на наличие уникальности свойства в инфоблоке
+     *
+     * @param $sIblockCode
+     * @param $aProperties
+     * @param $aProperties_Value
+     * @param $iValue
+     *
+     * @return mixed
+     */
+    private static function issetIblockElement($sIblockCode, $aProperties, $aProperties_Value, $iValue)
+    {
+        $iblockId = \IQDEV\Base\Helper::getIblockId($sIblockCode);
+        $bIsset   = true;
+        $aFields  = [
+            'IBLOCK_ID' => $iblockId
+        ];
+        $Elements = \CIBlockElement::GetList([["SORT" => "ASC"]], $aFields, false, ["nPageSize" => 50]);
+
+        while (($arElement = $Elements->GetNextElement()) && $bIsset != false) {
+            $Element = $arElement->GetProperties(false, [$aProperties => $aProperties_Value]);
+            $Element = $Element[$aProperties_Value]['VALUE'];
+            if ($Element == $iValue) {
+                $bIsset = false;
+            } elseif ($Element != $iValue) {
+                $bIsset = true;
+            }
+        }
+
+
+        return $bIsset;
     }
 
     /**
@@ -133,5 +172,193 @@ class FormsHandler
         }
 
         return $arResult;
+    }
+
+    /**
+     * Записывает заявки на подписку
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function subscribeNewsAjaxAction(array $aData)
+    {
+        try {
+            //  TODO Logics
+            if (!CModule::IncludeModule('subscribe')) {
+                throw new \RuntimeException('Не удалось подключить модуль подписки');
+            }
+
+
+            $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
+
+            global $USER;
+
+            $arFields = [
+                "USER_ID" => $USER->IsAuthorized() ? $USER->GetID() : false,
+                "FORMAT" => "html",
+                "EMAIL" => $sEmail,
+                "ACTIVE" => "Y",
+                "RUB_ID" => Helper::getCrubricId('subsription')
+            ];
+
+            $subscr = new CSubscription;
+
+            //can add without authorization
+            $ID = $subscr->Add($arFields);
+            if ($ID <= 0) {
+                throw new \RuntimeException($subscr->LAST_ERROR);
+            }
+
+            CSubscription::Authorize($ID);
+
+
+            $aResult = [
+                'status' => true,
+                'email'   =>$sEmail
+            ];
+        } catch (\Throwable $e) {
+            $aResult = [
+                'status' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
+
+        return $aResult;
+    }
+
+    /**
+     * Записывает заявки на ипотеку
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function calculatebuyerAjaxAction(array $aData)
+    {
+        try {
+            //  TODO Logics
+
+            global $USER;
+            $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
+            $iCost  = filter_var($aData['cost'], FILTER_SANITIZE_NUMBER_INT);
+            $iTerm  = filter_var($aData['term'], FILTER_SANITIZE_NUMBER_INT);
+            $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
+
+
+            $Selected_Bank = "";
+
+            $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
+
+            $aData['name']   = filter_var($aData['name'], FILTER_SANITIZE_STRING);
+            $fCalculatedRate = filter_var($aData['calculatedRate'], FILTER_SANITIZE_STRING);
+
+            $oIblock_id = \IQDEV\Base\Helper::getIblockId('bank');
+
+            if (!empty($sBank)) {
+                $arFilter = [
+                    "IBLOCK_ID" => $oIblock_id,
+                    "CODE" => $sBank
+                ];
+                $arSelect = ["ID"];
+
+                $oId_Element = \CIBlockElement::GetList(["SORT" => "ASC"],
+                    $arFilter,
+                    false,
+                    ["nPageSize" => 50],
+                    $arSelect)->GetNextElement()->GetFields();
+
+                $Selected_Bank = $oId_Element;
+            }
+
+            if ($aData['is_member'] == false) {
+                $sIs_member = "Не участник";
+            } else {
+                $sIs_member = "Является участником";
+            }
+
+
+            $aProperties = [
+                'EMAIL' => $sEmail,
+                'COST' => $iCost,
+                'FIRST_PAY' => $iFirst_pay,
+                'TERM' => $iTerm,
+                'CALCULATED_RATE' => $fCalculatedRate,
+                'SELECTED_BANK' => $Selected_Bank,
+                'IS_MEMBER' => $sIs_member
+
+            ];
+
+
+            $aResult = [
+                'status' => true,
+                'name' => $aData['name'],
+                'email' => $sEmail,
+                'cost' => $iCost,
+                'first_pay' => $iFirst_pay,
+                'term' => $iTerm,
+                'calculatedRate' => $fCalculatedRate,
+                'selected_Bank' => $sBank
+            ];
+
+            if (!self::issetIblockElement('ras', 'CODE', 'EMAIL', $sEmail)) {
+                throw new \RuntimeException('Такая почта уже есть');
+            }
+
+            $ID = self::addIblockElement('ras', $aData, $aProperties);
+
+            if ($ID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+        } catch (\Throwable $e) {
+            $aResult = [
+                'status' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
+        return $aResult;
+    }
+    /**
+     * Записывает отзывы
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function reviewAjaxAction(array $aData)
+    {
+        try {
+            //Todo logics
+
+            global $USER;
+            $aProperties = [
+                'PREVIEW_TEXT'=>$aData['review'],
+                'PHONE' =>$aData['phone']
+            ];
+
+            $aFields = [
+                'name' => $aData['name'],
+                'PREVIEW_TEXT' =>$aData['review'],
+                'PREVIEW_PICTURE' =>$_FILES['file']
+            ];
+
+            $aResult = [
+                'status' => true,
+                'name'   =>$aData['name'],
+                'phone'  =>$aData['phone'],
+                'review' =>$aData['review'],
+            ];
+
+            $ID = self::addIblockElement('reviews', $aFields, $aProperties);
+            if ($ID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+        } catch (\Throwable $e) {
+            $aResult = [
+                'status' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
+        return $aResult;
     }
 }
