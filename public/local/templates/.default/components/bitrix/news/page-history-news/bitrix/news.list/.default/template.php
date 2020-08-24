@@ -4,9 +4,6 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 };
 
 ?>
-<?
-require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
-?>
 <div class="tabs__content js-tabs__content" data-tab-content="stories">
     <div class="slider glide js-slider">
         <div class="slider__body">

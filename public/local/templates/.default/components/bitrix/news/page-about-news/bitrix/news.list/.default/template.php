@@ -3,7 +3,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 };
 ?>
-<?php
+<?
 require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
 ?>
 <div class="tabs__content js-tabs__content active" data-tab-content="news">
