@@ -369,7 +369,7 @@ class FormsHandler
      *
      * @return mixed
      */
-    public static function questionAjaxAction(array $aData){
+    public static function questionserviceAjaxAction(array $aData){
 
         try {
             //TODO logics
@@ -405,6 +405,39 @@ class FormsHandler
             if ($ID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
+
+        }catch (\Throwable $e){
+            $aResult = [
+                'status'  =>false,
+                'message' =>$e->getMessage(),
+            ];
+        }
+        return $aResult;
+    }
+
+    public static function questionAjaxAction(array $aData)
+    {
+        try { //TODO logics
+            $sPhone = filter_var($aData['phone'], FILTER_SANITIZE_EMAIL);
+            global $USER;
+            $aProperties = [
+                'PHONE' =>$sPhone,
+            ];
+
+            if (!self::issetIblockElement('news-reviews', 'CODE', 'PHONE', $sPhone)) {
+                throw new \RuntimeException('Вы уже оставили заявку,ждите когда с вами свяжутся!');
+            }
+
+            $ID = self::addIblockElement('news-reviews', $aData, $aProperties);
+            if ($ID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+
+            $aResult = [
+                'status'  =>true,
+                'name' =>$aData['name'],
+                'phone' =>$aData['phone']
+            ];
 
         }catch (\Throwable $e){
             $aResult = [
