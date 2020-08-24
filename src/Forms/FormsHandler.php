@@ -5,6 +5,7 @@ namespace IQDEV\Forms;
 use CModule;
 use CSubscription;
 use IQDEV\Base\Helper;
+use PHP_CodeSniffer\Files\FileList;
 
 class FormsHandler
 {
@@ -332,7 +333,6 @@ class FormsHandler
 
             global $USER;
             $aProperties = [
-                'PREVIEW_TEXT'=>$aData['review'],
                 'PHONE' =>$aData['phone']
             ];
 
@@ -357,6 +357,59 @@ class FormsHandler
             $aResult = [
                 'status' => false,
                 'message' => $e->getMessage(),
+            ];
+        }
+        return $aResult;
+    }
+
+    /**
+     * Записывает вопросы в базу
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function questionAjaxAction(array $aData){
+
+        try {
+            //TODO logics
+
+            global $USER;
+            $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
+            $sPhone = filter_var($aData['phone'], FILTER_SANITIZE_STRING);
+
+            $sQuestion    = filter_var($aData['question'],FILTER_SANITIZE_STRING);
+            $sVillageName = filter_var($aData['villageName'],FILTER_SANITIZE_STRING);
+            $iAreaNumber  = filter_var($aData['areaNumber'],FILTER_SANITIZE_STRING);
+
+            $aProperties = [
+                'EMAIL'         =>$sEmail,
+                'PHONE'         =>$sPhone,
+                'VILLAGE_NAME'  =>$sVillageName,
+                'QUESTION'      =>$sQuestion,
+                'AREA_NUMBER'   =>$iAreaNumber
+            ];
+
+            $aResult = [
+                'status'      =>true,
+                'email'       =>$sEmail,
+                'info'        =>$aData,
+                'phone'       =>$sPhone,
+                'villageName' =>$sVillageName,
+                'question'    =>$sQuestion,
+                'areaNumber'  =>$iAreaNumber
+            ];
+
+
+            $ID = self::addIblockElement('service-ask', $aData, $aProperties);
+            if ($ID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+
+        }catch (\Throwable $e){
+            $aResult = [
+                'status'  =>false,
+                'message' =>$e->getMessage(),
             ];
         }
         return $aResult;
