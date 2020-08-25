@@ -189,9 +189,15 @@ class Actions
         $aResult = FormsHandler::questionAjaxAction($this->oRequest);
         $this->setAjaxResponse($aResult);
     }
-
-    public function getOfficeCoordsAjaxAction(){
+    /**
+     * Яндекс карта с местоположением офиса
+     *
+     * @return void
+     */
+    public function getOfficeCoordsAjaxAction()
+    {
 
         $this->setAjaxResponse(['main'=>["57.160422551826","65.532899804858"]]);
+
     }
 }

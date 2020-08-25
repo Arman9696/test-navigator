@@ -207,7 +207,9 @@ class FormsHandler
 
             //can add without authorization
             $ID = $subscr->Add($arFields);
+
             $bValidation = Recaptcha::recaptchaCheck($aData['grecaptcha']);
+
             if ($ID <= 0 && $bValidation) {
                 throw new \RuntimeException($subscr->LAST_ERROR);
             }
@@ -308,6 +310,7 @@ class FormsHandler
             }
 
             $ID = self::addIblockElement('ras', $aData, $aProperties);
+
             $bValidation = Recaptcha::recaptchaCheck($aData['grecaptcha']);
 
             if ($ID <= 0 && $bValidation) {
@@ -352,6 +355,7 @@ class FormsHandler
             ];
 
             $ID = self::addIblockElement('reviews', $aFields, $aProperties);
+
             $bValidation = Recaptcha::recaptchaCheck($aData['grecaptcha']);
 
             if ($ID <= 0 && $bValidation) {
@@ -407,10 +411,13 @@ class FormsHandler
 
 
             $ID = self::addIblockElement('service-ask', $aData, $aProperties);
+
             $bValidation = Recaptcha::recaptchaCheck($aData['grecaptcha']);
+
             if ($ID <= 0 && $bValidation) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
+
         } catch (\Throwable $e) {
             $aResult = [
                 'status'  =>false,
