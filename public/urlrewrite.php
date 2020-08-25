@@ -35,10 +35,11 @@ $arUrlRewrite = array(
 
     8 =>
         array(
-            'CONDITION' => '#^/blog/#',
+            'CONDITION' => '#^/about/blog/#',
             'RULE' => '',
             'ID' => 'bitrix:news',
-            'PATH' => '/blog/index.php',
+            'PATH' => '/about/blog/index.php',
             'SORT' => 100,
         ),
+
 );
