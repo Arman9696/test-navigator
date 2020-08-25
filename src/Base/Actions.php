@@ -198,6 +198,5 @@ class Actions
     {
 
         $this->setAjaxResponse(['main'=>["57.160422551826","65.532899804858"]]);
-
     }
 }

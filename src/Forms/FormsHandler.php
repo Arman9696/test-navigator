@@ -417,7 +417,6 @@ class FormsHandler
             if ($ID <= 0 && $bValidation) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
-
         } catch (\Throwable $e) {
             $aResult = [
                 'status'  =>false,
@@ -448,7 +447,9 @@ class FormsHandler
             }
 
             $ID = self::addIblockElement('news-reviews', $aData, $aProperties);
+
             $bValidation = Recaptcha::recaptchaCheck($aData['grecaptcha']);
+
             if ($ID <= 0 && $bValidation) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }

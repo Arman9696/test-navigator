@@ -8,18 +8,29 @@ namespace IQDEV\Base;
  * v.3
  *
  * Class Recaptcha
+ *
  * @package IQDEV\Base
  */
 class Recaptcha
 {
-    public static function recaptchaCheck ($sUserCaptchaKey)
+    /**
+     * Проверка капчи
+     *
+     * @param $sUserCaptchaKey
+     *
+     * @return mixed
+     */
+    public static function recaptchaCheck($sUserCaptchaKey)
     {
         $sSecretKey = getenv('SECRET_RECAPTCHA_KEY');
+
         $sValidatingUrl = getenv('VALIDATING_API');
+
         $aData = [
             'secret' => $sSecretKey,
             'response' => $sUserCaptchaKey
         ];
+
         $options = [
             'http' => [
                 'method' => 'POST',
