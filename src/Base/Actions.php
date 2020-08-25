@@ -2,6 +2,8 @@
 
 namespace IQDEV\Base;
 
+use IQDEV\Forms\FormsHandler;
+
 class Actions
 {
     /**
@@ -131,5 +133,65 @@ class Actions
     public function testSendAjaxAction()
     {
         $this->setAjaxResponse($this->oRequest);
+    }
+
+    /**
+     * Обработка формы подписки
+     *
+     * @return void
+     */
+    public function formSubscribeAjaxAction()
+    {
+        $aResult = FormsHandler::subscribeNewsAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    /**
+     * Обработка формы калькулятор
+     *
+     * @return void
+     */
+    public function formCalculationAjaxAction()
+    {
+        $aResult = FormsHandler::calculatebuyerAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    /**
+     * Обработка формы на добавление отзывов
+     *
+     * @return void
+     */
+    public function formReviewAjaxAction()
+    {
+        $aResult = FormsHandler::reviewAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    /**
+     * Обработка формы на вопросов в базe страница -service
+     *
+     * @return void
+     */
+    public function formQuestionServiceAjaxAction()
+    {
+        $aResult = FormsHandler::questionserviceAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    /**
+     * Обработка формы вопросов с деталок новостей
+     *
+     * @return void
+     */
+    public function formQuestionAjaxAction()
+    {
+        $aResult = FormsHandler::questionAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    public function getOfficeCoordsAjaxAction(){
+
+        $this->setAjaxResponse(['main'=>["57.160422551826","65.532899804858"]]);
     }
 }
