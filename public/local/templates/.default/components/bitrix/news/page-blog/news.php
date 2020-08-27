@@ -2,6 +2,8 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 }
+?>
+<?php
 
 $APPLICATION->IncludeComponent(
     "bitrix:news.list",
@@ -53,8 +55,14 @@ $APPLICATION->IncludeComponent(
         "FILTER_NAME" => $arParams["FILTER_NAME"],
         "HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
         "CHECK_DATES" => $arParams["CHECK_DATES"],
+
+
+
+
     ],
     $component
 );
 
-IQDEV\Base\Load::setTemplate('/local/markup/src/markup/page/blog/index.pug');
+
+
+//IQDEV\Base\Load::setTemplate('/local/markup/src/markup/page/blog/index.pug');
