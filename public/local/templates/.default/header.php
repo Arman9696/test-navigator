@@ -6,6 +6,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 ?>
 
 <?
+
 CModule::IncludeModule('iqdev.options');
 $options  =  IQDEV\Options\Options::getPageOptions('headerNumber');
 $bNoEmpty = false;

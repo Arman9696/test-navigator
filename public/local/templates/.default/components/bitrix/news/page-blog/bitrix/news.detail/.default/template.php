@@ -412,5 +412,7 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
     </div>
 
 </section>
+<?
+require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/line-unit.php';
 
 
