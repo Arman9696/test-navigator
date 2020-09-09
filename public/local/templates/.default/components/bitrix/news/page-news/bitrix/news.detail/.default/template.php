@@ -19,7 +19,7 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                 <? } ?>
                 <div class="detail-header__share">
                     <div class="detail-header__share-title">Поделиться:</div>
-                    <a class="detail-header__share-icon" href="<?=$arResult['SOCIAL']['facebook']?>" target="_blank">
+                    <a class="detail-header__share-icon" href="<?=$arResult["SOCIAL"]["facebook"]?>" target="_blank">
                         <div class="icon">
                             <svg width="11" height="20" viewBox="0 0 11 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                             </svg>
                         </div>
                     </a>
-                    <a class="detail-header__share-icon" href="<?=$arResult['SOCIAL']['vkontakte']?>" target="_blank">
+                    <a class="detail-header__share-icon" href="<?=$arResult["SOCIAL"]["vkontakte"]?>" target="_blank">
                         <div class="icon">
                             <svg width="25" height="14" viewBox="0 0 25 14" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                             </svg>
                         </div>
                     </a>
-                    <a class="detail-header__share-icon" href="<?=$arResult['SOCIAL']['odnoklassniki']?>"
+                    <a class="detail-header__share-icon" href="<?=$arResult["SOCIAL"]["odnoklassniki"]?>"
                        target="_blank">
                         <div class="icon">
                             <svg width="12" height="20" viewBox="0 0 12 20" fill="none"
@@ -105,37 +105,28 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                      alt="<?=$arResult["DETAIL_PICTURE"]["ALT"]?>"
                      title="<?=$arResult["DETAIL_PICTURE"]["TITLE"]?>"/>
         <?}?>
-            <?if ($arResult["NAV_RESULT"]) { ?>
-                <?if ($arParams["DISPLAY_TOP_PAGER"]) {?>
-                    <?=$arResult["NAV_STRING"]?>
-                <? } ?>
-                <?echo $arResult["NAV_TEXT"];?>
-                <?if ($arParams["DISPLAY_BOTTOM_PAGER"]) { ?>
-                    <?=$arResult["NAV_STRING"]?>
-                <? } ?>
-            <?} elseif (strlen($arResult["DETAIL_TEXT"])>0) { ?>
-                <?=$arResult["DETAIL_TEXT"]?>
+
+        <?if ($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arResult["FIELDS"]["PREVIEW_TEXT"]) {?>
+            <p><?=$arResult["FIELDS"]["PREVIEW_TEXT"];unset($arResult["FIELDS"]["PREVIEW_TEXT"])?></p>
+        <? } ?>
+
+        <?if ($arResult["NAV_RESULT"]) { ?>
+            <?if ($arParams["DISPLAY_TOP_PAGER"]) {?>
+                <?=$arResult["NAV_STRING"]?>
             <? } ?>
-
-            <?if (strlen($arResult["PROPERTIES"]["DETAIL"]["~VALUE"]["TEXT"])>0) {?>
-                <?$iImage = $arResult["PROPERTIES"]["IMAGE"]["VALUE"]?>
-                <?if ($iImage != null) {?>
-            <div class="detail-content__image"><img class="img" src="<?=CFILE::GetPath($iImage)?>"/></div>
-                <?} else {?>
-                    <div class="detail-content__image">
-                        <img class="img" src="https://source.unsplash.com/900x450"/>
-                    </div>
-                <?}?>
-                <?=$arResult["PROPERTIES"]["DETAIL"]["~VALUE"]["TEXT"]?>
-            <?}?>
-        </div>
-
-
+            <?echo $arResult["NAV_TEXT"];?>
+            <?if ($arParams["DISPLAY_BOTTOM_PAGER"]) { ?>
+                <?=$arResult["NAV_STRING"]?>
+            <? } ?>
+        <?} elseif (strlen($arResult["DETAIL_TEXT"])>0) { ?>
+            <?=$arResult["DETAIL_TEXT"]?></div>
+        <? } else { ?>
+            <p><?=$arResult["PREVIEW_TEXT"]?></p></div>
+        <?} ?>
     </div>
         <div class="detail__item">
             <div class="detail-aside-banners">
-                <?foreach ($arResult['BANNERS'] as $arkey => $aElement) {?>
-                    <? if ($arkey == 0) {?>
+                <?foreach ($arResult['BANNERS'] as $aElement) {?>
                     <div class="detail-aside-banners__item"><a class="banner" href="#">
                             <div class="banner__photo-wrapper">
                                 <?if ($aElement["DETAIL_PICTURE"] == null && $aElement["DETAIL_PICTURE"] == "") {?>
@@ -152,7 +143,6 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                                 </div>
                             </div>
                         </a></div>
-                    <?}?>
                 <?}?>
             </div>
         </div>
@@ -362,5 +352,4 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
 </section>
 <?
 require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/line-unit.php';
-
 
