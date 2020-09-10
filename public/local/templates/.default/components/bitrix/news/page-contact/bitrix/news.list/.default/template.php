@@ -27,7 +27,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
                                 <img class="gallery-item__image" src="<?=CFile::GetPath($iPhoto)?>"
                                      width="100%"/>
                             </a></div>
-                                <?}?>
+                            <?}?>
                     </div>
                     <div class="gallery__open">
                         <div class="arrow-link arrow-link--bottom">
@@ -65,7 +65,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
                                                  width="100%"/>
                                         </a>
                                     </div>
-                                <?}?>
+                            <?}?>
                                 </div>
                             </div>
                         </div>
