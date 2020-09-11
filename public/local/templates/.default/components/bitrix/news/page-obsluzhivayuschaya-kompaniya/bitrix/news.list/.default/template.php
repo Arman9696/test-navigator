@@ -4,7 +4,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 };
 ?>
 <?
-$options = IQDEV\Options\Options::getPageOptions('ok_page');
+$oOptions = IQDEV\Options\Options::getPageOptions('ok_page');
 ?>
 <section class="section mb-large">
     <div class="container">
@@ -28,12 +28,12 @@ $options = IQDEV\Options\Options::getPageOptions('ok_page');
 <section class="section mb-medium">
     <div class="container">
         <div class="separate-paragraph">
-            <div class="separate-paragraph__title"><span><?= $options['paragraphAdditionalServices']['title'] ?></span>
+            <div class="separate-paragraph__title"><span><?= $oOptions['paragraphAdditionalServices']['title'] ?></span>
             </div>
             <div class="separate-paragraph__divider"></div>
             <div class="separate-paragraph__text-wrapper">
                 <div class="separate-paragraph__text">
-                    <?= $options['paragraphAdditionalServices']['text'] ?>
+                    <?= $oOptions['paragraphAdditionalServices']['text'] ?>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@ $options = IQDEV\Options\Options::getPageOptions('ok_page');
 </section>
 <section class="section mb-medium">
     <div class="container">
-        <div class="section-header"><?= $options['questionsTitle'] ?></div>
+        <div class="section-header"><?= $oOptions['questionsTitle'] ?></div>
         <div class="accordion-container js-accordion accordion-container--show-more">
             <? $iCount = count($arResult['quest']) ?>
             <? for ($index = 0; $index < $iCount && $index <= 6; $index++) {
@@ -236,7 +236,7 @@ $options = IQDEV\Options\Options::getPageOptions('ok_page');
 </section>
 <section class="section section--overflow-hidden mb-large">
     <div class="container">
-        <div class="section-header"><?=$options['contactsTitle']?></div>
+        <div class="section-header"><?=$oOptions['contactsTitle']?></div>
         <div class="glide contacts-persons js-contacts-persons">
             <div class="glide__track" data-glide-el="track">
                 <ul class="glide__slides">
@@ -277,34 +277,34 @@ $options = IQDEV\Options\Options::getPageOptions('ok_page');
         <div class="contacts-table">
             <div class="contacts-table-group">
                 <div class="contacts-table-group__group">
-                    <div class="contacts-table-group__name"><?=$options['AccountingDepartment']?></div>
-                    <div class="contacts-table-group__value"><?=$options['dataAccountingDepartment']?></div>
+                    <div class="contacts-table-group__name"><?=$oOptions['AccountingDepartment']?></div>
+                    <div class="contacts-table-group__value"><?=$oOptions['dataAccountingDepartment']?></div>
                 </div>
                 <div class="contacts-table-group__divider"></div>
                 <div class="contacts-table-group__group">
-                    <div class="contacts-table-group__name"><?=$options['alpine_title1']?></div>
-                    <div class="contacts-table-group__value"><?=$options['alpine_data1']?></div>
+                    <div class="contacts-table-group__name"><?=$oOptions['alpine_title1']?></div>
+                    <div class="contacts-table-group__value"><?=$oOptions['alpine_data1']?></div>
                 </div>
                 <div class="contacts-table-group__group">
-                    <div class="contacts-table-group__name"><?=$options['alpine_title3']?></div>
-                    <div class="contacts-table-group__value"><?=$options['alpine_data3']?></div>
+                    <div class="contacts-table-group__name"><?=$oOptions['alpine_title3']?></div>
+                    <div class="contacts-table-group__value"><?=$oOptions['alpine_data3']?></div>
                 </div>
                 <div class="contacts-table-group__group">
-                    <div class="contacts-table-group__name"><?=$options['trees']?></div>
-                    <div class="contacts-table-group__value"><?=$options['trees_data']?></div>
+                    <div class="contacts-table-group__name"><?=$oOptions['trees']?></div>
+                    <div class="contacts-table-group__value"><?=$oOptions['trees_data']?></div>
                 </div>
                 <div class="contacts-table-group__divider"></div>
                 <div class="contacts-table-group__group">
-                    <div class="contacts-table-group__name"><?=$options['sovet_apline']?></div>
-                    <div class="contacts-table-group__value"><?=$options['data_apline']?></div>
+                    <div class="contacts-table-group__name"><?=$oOptions['sovet_apline']?></div>
+                    <div class="contacts-table-group__value"><?=$oOptions['data_apline']?></div>
                 </div>
                 <div class="contacts-table-group__group">
-                    <div class="contacts-table-group__name"><?=$options['sovet_ushakova']?></div>
-                    <div class="contacts-table-group__value"><?=$options['data_ushakova']?></div>
+                    <div class="contacts-table-group__name"><?=$oOptions['sovet_ushakova']?></div>
+                    <div class="contacts-table-group__value"><?=$oOptions['data_ushakova']?></div>
                 </div>
                 <div class="contacts-table-group__group">
-                    <div class="contacts-table-group__name"><?=$options['sovet_esenino']?></div>
-                    <div class="contacts-table-group__value"><?=$options['data_esenino']?></div>
+                    <div class="contacts-table-group__name"><?=$oOptions['sovet_esenino']?></div>
+                    <div class="contacts-table-group__value"><?=$oOptions['data_esenino']?></div>
                 </div>
             </div>
             <div class="contacts-table-map js-contacts-table-map js-tabs">

@@ -205,12 +205,12 @@ class FormsHandler
             $subscr = new CSubscription;
 
             //can add without authorization
-            $ID = $subscr->Add($arFields);
-            if ($ID <= 0) {
+            $iID = $subscr->Add($arFields);
+            if ($iID <= 0) {
                 throw new \RuntimeException($subscr->LAST_ERROR);
             }
 
-            CSubscription::Authorize($ID);
+            CSubscription::Authorize($iID);
 
 
             $aResult = [
@@ -305,9 +305,9 @@ class FormsHandler
                 throw new \RuntimeException('Такая почта уже есть');
             }
 
-            $ID = self::addIblockElement('ras', $aData, $aProperties);
+            $iID = self::addIblockElement('ras', $aData, $aProperties);
 
-            if ($ID <= 0) {
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
@@ -348,8 +348,8 @@ class FormsHandler
                 'review' =>$aData['review'],
             ];
 
-            $ID = self::addIblockElement('reviews', $aFields, $aProperties);
-            if ($ID <= 0) {
+            $iID = self::addIblockElement('reviews', $aFields, $aProperties);
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
@@ -401,8 +401,8 @@ class FormsHandler
             ];
 
 
-            $ID = self::addIblockElement('service-ask', $aData, $aProperties);
-            if ($ID <= 0) {
+            $iID = self::addIblockElement('service-ask', $aData, $aProperties);
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
@@ -434,8 +434,8 @@ class FormsHandler
                 throw new \RuntimeException('Вы уже оставили заявку,ждите когда с вами свяжутся!');
             }
 
-            $ID = self::addIblockElement('news-reviews', $aData, $aProperties);
-            if ($ID <= 0) {
+            $iID = self::addIblockElement('news-reviews', $aData, $aProperties);
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
 
