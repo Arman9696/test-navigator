@@ -237,7 +237,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
         <div class="container">
             <div class="section-header">
                 <? if ($arEl) {
-                   echo $arEl['IBLOCK_NAME'];
+                    echo $arEl['IBLOCK_NAME'];
                 } ?>
             </div>
             <? foreach ($arResult['WHY'] as $arElement) { ?>
