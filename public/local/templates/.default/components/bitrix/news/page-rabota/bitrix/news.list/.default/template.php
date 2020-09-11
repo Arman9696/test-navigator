@@ -3,6 +3,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 };
 ?>
+<?$arEl = $arResult['WHY'][0]?>
 <? require_once $_SERVER['DOCUMENT_ROOT'] . '/_inc/menu.php'; ?>
     <section class="section mb-large">
         <div class="container">
@@ -235,8 +236,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     <section class="section mb-large">
         <div class="container">
             <div class="section-header">
-                <? if ($arResult['WHY'][0]) {
-                    $arResult['WHY'][0]['IBLOCK_NAME'];
+                <? if ($arEl) {
+                    $arEl['IBLOCK_NAME'];
                 } ?>
             </div>
             <? foreach ($arResult['WHY'] as $arElement) { ?>
