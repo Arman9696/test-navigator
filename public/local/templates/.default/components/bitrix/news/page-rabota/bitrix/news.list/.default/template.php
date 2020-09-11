@@ -236,9 +236,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     <section class="section mb-large">
         <div class="container">
             <div class="section-header">
-                <? if ($arResult['WHY'][0]) {
-                    $arResult['WHY'][0]['IBLOCK_NAME'] ;
-                } ?>
+                <? if ($arResult['WHY'][0]) $arResult['WHY'][0]['IBLOCK_NAME']; ?>
             </div>
             <? foreach ($arResult['WHY'] as $arElement) { ?>
             <div class="vacancy-description">

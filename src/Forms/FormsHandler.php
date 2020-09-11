@@ -5,7 +5,7 @@ namespace IQDEV\Forms;
 use CModule;
 use CSubscription;
 use IQDEV\Base\Helper;
-use PHP_CodeSniffer\Files\FileList;
+
 
 class FormsHandler
 {
