@@ -3,9 +3,10 @@
 namespace IQDEV\Forms;
 
 use CModule;
-use CSubscription;
-use IQDEV\Base\Helper;
 
+use CSubscription;
+
+use IQDEV\Base\Helper;
 
 class FormsHandler
 {
