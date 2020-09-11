@@ -5,7 +5,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 ?>
 <?
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_inc/buyer_menu.php';
-$options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
+$oOptions = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
 
 ?>
 <div class="modal js-modal" data-modal-open="calculation">
@@ -57,11 +57,11 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
 <section class="section mt-medium mb-medium">
     <div class="container">
         <div class="separate-paragraph">
-            <div class="separate-paragraph__title"><h1><?= $options['separateParagraphTitle'] ?></h1></div>
+            <div class="separate-paragraph__title"><h1><?= $oOptions['separateParagraphTitle'] ?></h1></div>
             <div class="separate-paragraph__divider"></div>
             <div class="separate-paragraph__text-wrapper">
                 <div class="separate-paragraph__text">
-                    <?= $options['separateParagraphText'] ?>
+                    <?= $oOptions['separateParagraphText'] ?>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
 </section>
 <section class="section mt-medium mb-medium" id="calc">
     <div class="container">
-        <div class="section-header"><?= $options['Send'] ?></div>
+        <div class="section-header"><?= $oOptions['Send'] ?></div>
         <div class="tabs js-tabs">
 
 
@@ -150,17 +150,17 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
             <div class="info-section__content">
                 <div class="info-section__header">
                     <div class="section-header">
-                        <?= $options['infoSection']['header'] ?>
+                        <?= $oOptions['infoSection']['header'] ?>
                     </div>
                 </div>
                 <ul class="info-section__list">
                     <li class="info-section__list-item">
-                        <?= $options['infoSection']['list']['0']['text'] ?>
+                        <?= $oOptions['infoSection']['list']['0']['text'] ?>
                     </li>
-                    <li class="info-section__list-item"><?= $options['infoSection']['list']['1']['text'] ?>
+                    <li class="info-section__list-item"><?= $oOptions['infoSection']['list']['1']['text'] ?>
                         <div class="info-section__tooltip">
                             <div class="tooltip-trigger js-tooltip-trigger"
-                                 data-tooltip-content="<?= $options['infoSection']['list']['1']['tooltip'] ?>">
+                                 data-tooltip-content="<?= $oOptions['infoSection']['list']['1']['tooltip'] ?>">
                                 <svg class="tooltip__trigger" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.9961 6.14062C11.9961 6.29557 11.9665 6.44141 11.9072 6.57812C11.848
@@ -190,10 +190,10 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
                             </div>
                         </div>
                     </li>
-                    <li class="info-section__list-item"><?= $options['infoSection']['list']['2']['text'] ?>
+                    <li class="info-section__list-item"><?= $oOptions['infoSection']['list']['2']['text'] ?>
                         <div class="info-section__tooltip">
                             <div class="tooltip-trigger js-tooltip-trigger"
-                                 data-tooltip-content="<?= $options['infoSection']['list']['1']['tooltip'] ?>">
+                                 data-tooltip-content="<?= $oOptions['infoSection']['list']['1']['tooltip'] ?>">
                                 <svg class="tooltip__trigger" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.9961 6.14062C11.9961 6.29557 11.9665 6.44141 11.9072 6.57812C11.848
@@ -223,13 +223,13 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_ipoteka');
                             </div>
                         </div>
                     </li>
-                    <li class="info-section__list-item"><?= $options['infoSection']['list']['3']['text'] ?></li>
-                    <li class="info-section__list-item"><?= $options['infoSection']['list']['4']['text'] ?></li>
+                    <li class="info-section__list-item"><?= $oOptions['infoSection']['list']['3']['text'] ?></li>
+                    <li class="info-section__list-item"><?= $oOptions['infoSection']['list']['4']['text'] ?></li>
                 </ul>
                 <div class="info-section__description">
-                    <?= $options['infoSection']['description'] ?>
+                    <?= $oOptions['infoSection']['description'] ?>
                 </div>
             </div>
-            <img class="info-section__image" src="<?= $options['infoSection']['image'] ?>" alt="alt"/></div>
+            <img class="info-section__image" src="<?= $oOptions['infoSection']['image'] ?>" alt="alt"/></div>
     </div>
 </section>
