@@ -202,15 +202,15 @@ class FormsHandler
                 "RUB_ID" => Helper::getCrubricId('subsription')
             ];
 
-            $subscr = new CSubscription;
+            $oSubscr = new CSubscription;
 
             //can add without authorization
-            $ID = $subscr->Add($arFields);
-            if ($ID <= 0) {
-                throw new \RuntimeException($subscr->LAST_ERROR);
+            $iID = $oSubscr->Add($arFields);
+            if ($iID <= 0) {
+                throw new \RuntimeException($oSubscr->LAST_ERROR);
             }
 
-            CSubscription::Authorize($ID);
+            CSubscription::Authorize($iID);
 
 
             $aResult = [
@@ -246,7 +246,7 @@ class FormsHandler
             $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
 
 
-            $Selected_Bank = "";
+            $sSelected_Bank = "";
 
             $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
 
@@ -268,7 +268,7 @@ class FormsHandler
                     ["nPageSize" => 50],
                     $arSelect)->GetNextElement()->GetFields();
 
-                $Selected_Bank = $oId_Element;
+                $sSelected_Bank = $oId_Element;
             }
 
             if ($aData['is_member'] == false) {
@@ -284,7 +284,7 @@ class FormsHandler
                 'FIRST_PAY' => $iFirst_pay,
                 'TERM' => $iTerm,
                 'CALCULATED_RATE' => $fCalculatedRate,
-                'SELECTED_BANK' => $Selected_Bank,
+                'SELECTED_BANK' => $sSelected_Bank,
                 'IS_MEMBER' => $sIs_member
 
             ];
@@ -305,9 +305,9 @@ class FormsHandler
                 throw new \RuntimeException('Такая почта уже есть');
             }
 
-            $ID = self::addIblockElement('ras', $aData, $aProperties);
+            $iID = self::addIblockElement('ras', $aData, $aProperties);
 
-            if ($ID <= 0) {
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
@@ -348,8 +348,8 @@ class FormsHandler
                 'review' =>$aData['review'],
             ];
 
-            $ID = self::addIblockElement('reviews', $aFields, $aProperties);
-            if ($ID <= 0) {
+            $iID = self::addIblockElement('reviews', $aFields, $aProperties);
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
@@ -401,8 +401,8 @@ class FormsHandler
             ];
 
 
-            $ID = self::addIblockElement('service-ask', $aData, $aProperties);
-            if ($ID <= 0) {
+            $iID = self::addIblockElement('service-ask', $aData, $aProperties);
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
