@@ -5,13 +5,14 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 ?>
 <? require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/buyer_menu.php'; ?>
 <?$sToDay = date('d.m.Y');?>
-<?$oOptions =  IQDEV\Options\Options::getPageOptions('buyer_prices');?>
+<?$oOptions = IQDEV\Options\Options::getPageOptions('buyer_prices');?>
 <section class="section mt-medium mb-medium">
     <div class="container"><h1 class="section-header"><?=$oOptions['sectionHeaderA']?></h1>
         <div class="price-list">
             <div class="price-list__accordion">
                 <div class="accordion-container js-accordion">
                     <?foreach ($arResult['ITEMS'] as $arKey => $arElement) {?>
+                        <?$aProperties = $arElement['PROP']?>
                         <? if ($arKey == 0) {?>
                             <div class="accordion accordion--active">
                                 <div class="accordion__header">
@@ -31,7 +32,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                         <div class="accordion__header-text-primary"><?=$arElement['NAME']?></div>
                                         <div class="accordion__header-text-secondary
                                         accordion__header-text-secondary--bold">
-                                            от <?=$arElement['MIN_PRICE']?> до <?=$arElement['MAX_PRICE']?> ₽
+                                            от <?=$aProperties['MIN_PRICE']?> до <?=$aProperties['MAX_PRICE']?> ₽
                                         </div>
                                     </div>
                                 </div>
@@ -41,14 +42,14 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                             участки
                                         </div>
                                         <div class="price-list__value">
-                                            <?='от '.$arElement['MIN_SQUARE'].' до '.$arElement['MAX_SQUARE'].' соток'?>
+                                            <?='от '.$aProperties['MIN_SQUARE'].' до '.$aProperties['MAX_SQUARE'].' соток'?>
                                         </div>
                                     </div>
                                     <div class="price-list__information">
                                         <div class="price-list__text">
                                             <?='Минимальная стоимость 1 сотки на '.$sToDay?>
                                         </div>
-                                        <div class="price-list__value"><?=$arElement['MIN_PRICE_TODAY']?> ₽</div>
+                                        <div class="price-list__value"><?=$aProperties['MIN_PRICE_TODAY']?> ₽</div>
                                     </div>
                                     <div class="price-list__summary">
                                         <div class="list-icon">
@@ -56,21 +57,21 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                                 <div class="list-icon__icon">
                                                     <img class="img"
                                                          src="
-                                                         <?=CFile::GetPath($arElement['PROPERTIES']['SOLD']['VALUE']) ?>
+                                                         <?=CFile::GetPath($aProperties['SOLD']['VALUE']) ?>
                                                             "/>
                                                 </div>
-                                                <div class="list-icon__text"><?=$arElement['SOLD']?> продано</div>
+                                                <div class="list-icon__text"><?=$aProperties['SOLD']?> продано</div>
                                             </div>
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
                                                          src="
                                                      <?=
-                                                        CFile::GetPath($arElement['PROPERTIES']['RESERVATION']['VALUE'])
+                                                        CFile::GetPath($aProperties['RESERVATION']['VALUE'])
                                                         ?>"/>
                                                 </div>
                                                 <div class="list-icon__text">
-                                                    <?=$arElement['RESERVATION']?> забронировано
+                                                    <?=$aProperties['RESERVATION']?> забронировано
                                                 </div>
                                             </div>
                                             <div class="list-icon__item">
@@ -78,11 +79,11 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                                     <img class="img"
                                                        src="
                                                        <?=
-                                                        CFile::GetPath($arElement['PROPERTIES']['AVAILABLE']['VALUE'])
+                                                        CFile::GetPath($aProperties['AVAILABLE']['VALUE'])
                                                         ?>"/>
                                                 </div>
                                                 <div class="list-icon__text">
-                                                    <?=$arElement['AVAILABLE']?> доступно
+                                                    <?=$aProperties['AVAILABLE']?> доступно
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +109,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                             <div class="accordion__header-text accordion__header-text--grid">
                                 <div class="accordion__header-text-primary"><?=$arElement['NAME']?></div>
                                 <div class="accordion__header-text-secondary accordion__header-text-secondary--bold">от
-                                    <?=$arElement['MIN_PRICE']?> до <?=$arElement['MAX_PRICE']?> ₽
+                                    <?=$aProperties['MIN_PRICE']?> до <?=$aProperties['MAX_PRICE']?> ₽
                                 </div>
                             </div>
                         </div>
@@ -118,38 +119,46 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     участки
                                 </div>
                                 <div class="price-list__value">
-                                    <?='от '.$arElement['MIN_SQUARE'].' до '.$arElement['MAX_SQUARE'].' соток'?>
+                                    <?='от '.$aProperties['MIN_SQUARE'].' до '.$aProperties['MAX_SQUARE'].' соток'?>
                                 </div>
                             </div>
                             <div class="price-list__information">
                                 <div class="price-list__text"><?='Минимальная стоимость 1 сотки на '.$sToDay?></div>
-                                <div class="price-list__value"><?=$arElement['MIN_PRICE_TODAY']?> ₽</div>
+                                <div class="price-list__value"><?=$aProperties['MIN_PRICE_TODAY']?> ₽</div>
                             </div>
                             <div class="price-list__summary">
                                 <div class="list-icon">
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arElement['PROPERTIES']['SOLD']['VALUE'])?>"/>
+                                                 src="
+                                                         <?=CFile::GetPath($aProperties['SOLD']['VALUE']) ?>
+                                                            "/>
                                         </div>
-                                        <div class="list-icon__text"><?=$arElement['SOLD']?> продано</div>
+                                        <div class="list-icon__text"><?=$aProperties['SOLD']?> продано</div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arElement['RESERVATION']['VALUE']) ?>"/>
+                                                 src="
+                                                     <?=
+                                                 CFile::GetPath($aProperties['RESERVATION']['VALUE'])
+                                                 ?>"/>
                                         </div>
                                         <div class="list-icon__text">
-                                            <?=$arElement['RESERVATION']?> забронировано
+                                            <?=$aProperties['RESERVATION']?> забронировано
                                         </div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arElement['AVAILABLE']['VALUE'])?>"/>
+                                                 src="
+                                                       <?=
+                                                 CFile::GetPath($aProperties['AVAILABLE']['VALUE'])
+                                                 ?>"/>
                                         </div>
                                         <div class="list-icon__text">
-                                            <?=$arElement['AVAILABLE']?> доступно
+                                            <?=$aProperties['AVAILABLE']?> доступно
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +182,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                             <div class="accordion__header-text accordion__header-text--grid">
                                 <div class="accordion__header-text-primary"><?=$arElement['NAME']?></div>
                                 <div class="accordion__header-text-secondary accordion__header-text-secondary--bold">от
-                                    <?=$arElement['MIN_PRICE']?> до <?=$arElement['MAX_PRICE']?> ₽
+                                    <?=$aProperties['MIN_PRICE']?> до <?=$aProperties['MAX_PRICE']?> ₽
                                 </div>
                             </div>
                         </div>
@@ -183,38 +192,46 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     участки
                                 </div>
                                 <div class="price-list__value">
-                                    <?='от '.$arElement['MIN_SQUARE'].' до '.$arElement['MAX_SQUARE'].' соток'?>
+                                    <?='от '.$aProperties['MIN_SQUARE'].' до '.$aProperties['MAX_SQUARE'].' соток'?>
                                 </div>
                             </div>
                             <div class="price-list__information">
                                 <div class="price-list__text"><?='Минимальная стоимость 1 сотки на '.$sToDay?></div>
-                                <div class="price-list__value"><?=$arElement['MIN_PRICE_TODAY']?> ₽</div>
+                                <div class="price-list__value"><?=$aProperties['MIN_PRICE_TODAY']?> ₽</div>
                             </div>
                             <div class="price-list__summary">
                                 <div class="list-icon">
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arElement['SOLD']['VALUE'])?>"/>
+                                                 src="
+                                                         <?=CFile::GetPath($aProperties['SOLD']['VALUE']) ?>
+                                                            "/>
                                         </div>
-                                        <div class="list-icon__text"><?=$arElement['SOLD']?> продано</div>
+                                        <div class="list-icon__text"><?=$aProperties['SOLD']?> продано</div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arElement['RESERVATION']['VALUE']) ?>"/>
+                                                 src="
+                                                     <?=
+                                                 CFile::GetPath($aProperties['RESERVATION']['VALUE'])
+                                                 ?>"/>
                                         </div>
                                         <div class="list-icon__text">
-                                            <?=$arElement['RESERVATION']?> забронировано
+                                            <?=$aProperties['RESERVATION']?> забронировано
                                         </div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arElement['AVAILABLE']['VALUE'])?>"/>
+                                                 src="
+                                                       <?=
+                                                 CFile::GetPath($aProperties['AVAILABLE']['VALUE'])
+                                                 ?>"/>
                                         </div>
                                         <div class="list-icon__text">
-                                            <?=$arElement['AVAILABLE']?> доступно
+                                            <?=$aProperties['AVAILABLE']?> доступно
                                         </div>
                                     </div>
                                 </div>
@@ -227,9 +244,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                 </div>
             </div>
             <div class="price-list__enumeration price-list__enumeration--gray">
-                <div class="price-list__enumeration-title"><?=$arElement['COMMUNICATIONS_TITLE']['VALUE']?></div>
+                <div class="price-list__enumeration-title"><?=$arElement['PROPERTIES']['COMMUNICATIONS_TITLE']['VALUE']?></div>
                 <ul class="price-list__list">
-                    <?foreach ($arElement['COMMUNICATIONS']['VALUE'] as $strItem) {?>
+                    <?foreach ($arElement['PROPERTIES']['COMMUNICATIONS']['VALUE'] as $strItem) {?>
                         <li class="price-list__list-item">
                             <?=$strItem?>
                         </li>

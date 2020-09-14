@@ -78,17 +78,17 @@ foreach ($arResult['ITEMS'] as $arKey => $arElement) {
 
     $aRunTime = array_shift($aRunTime);
 
-    $arResult['ITEMS'][$arKey]['MIN_PRICE'] = (int) $aRunTime['MIN_PRICE'];
-    $arResult['ITEMS'][$arKey]['MAX_PRICE'] = (int) $aRunTime['MAX_PRICE'];
+    $arResult['ITEMS'][$arKey]['PROP']['MIN_PRICE'] = (int) $aRunTime['MIN_PRICE'];
+    $arResult['ITEMS'][$arKey]['PROP']['MAX_PRICE'] = (int) $aRunTime['MAX_PRICE'];
 
-    $arResult['ITEMS'][$arKey]['MIN_SQUARE'] = $aRunTime['MIN_SQUARE'];
-    $arResult['ITEMS'][$arKey]['MAX_SQUARE'] = $aRunTime['MAX_SQUARE'];
+    $arResult['ITEMS'][$arKey]['PROP']['MIN_SQUARE'] = $aRunTime['MIN_SQUARE'];
+    $arResult['ITEMS'][$arKey]['PROP']['MAX_SQUARE'] = $aRunTime['MAX_SQUARE'];
 
-    $arResult['ITEMS'][$arKey]['MIN_PRICE_TODAY'] = $aRunTime['MIN_PRICE_TODAY'];
+    $arResult['ITEMS'][$arKey]['PROP']['MIN_PRICE_TODAY'] = $aRunTime['MIN_PRICE_TODAY'];
 
-    $arResult['ITEMS'][$arKey]['AVAILABLE'] = $iCountAvailavle;
+    $arResult['ITEMS'][$arKey]['PROP']['AVAILABLE'] = $iCountAvailavle;
 
-    $arResult['ITEMS'][$arKey]['RESERVATION'] = $iCountReservation;
+    $arResult['ITEMS'][$arKey]['PROP']['RESERVATION'] = $iCountReservation;
 
-    $arResult['ITEMS'][$arKey]['SOLD'] = $iCountSold;
+    $arResult['ITEMS'][$arKey]['PROP']['SOLD'] = $iCountSold;
 }
