@@ -32,7 +32,6 @@ $arItems = $arResult['ITEMS'];
 
 $iCountItems = count($arResult['ITEMS']);
 for ($iIndex = 0; $iIndex<$iCountItems; $iIndex++) {
-
     $arFilter = [
         'select' => ['MIN_PRICE','MAX_PRICE','MIN_SQUARE','MAX_SQUARE','MIN_PRICE_TODAY'],
         'filter'=>[
