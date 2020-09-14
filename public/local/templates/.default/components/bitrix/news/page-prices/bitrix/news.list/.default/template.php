@@ -12,7 +12,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             <div class="price-list__accordion">
                 <div class="accordion-container js-accordion">
                     <?foreach ($arResult['ITEMS'] as $arKey => $arElement) {?>
-                        <?$aProperties = $arElement['PROP']?>
+                        <?$aProp = $arElement['PROP']?>
                         <? if ($arKey == 0) {?>
                             <div class="accordion accordion--active">
                                 <div class="accordion__header">
@@ -32,7 +32,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                         <div class="accordion__header-text-primary"><?=$arElement['NAME']?></div>
                                         <div class="accordion__header-text-secondary
                                         accordion__header-text-secondary--bold">
-                                            от <?=$aProperties['MIN_PRICE']?> до <?=$aProperties['MAX_PRICE']?> ₽
+                                            от <?=$aProp['MIN_PRICE']?> до <?=$aProp['MAX_PRICE']?> ₽
                                         </div>
                                     </div>
                                 </div>
@@ -42,48 +42,40 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                             участки
                                         </div>
                                         <div class="price-list__value">
-                                            <?='от '.$aProperties['MIN_SQUARE'].' до '.$aProperties['MAX_SQUARE'].' соток'?>
+                                            <?='от '.$aProp['MIN_SQUARE'].' до '.$aProp['MAX_SQUARE'].' соток'?>
                                         </div>
                                     </div>
                                     <div class="price-list__information">
                                         <div class="price-list__text">
                                             <?='Минимальная стоимость 1 сотки на '.$sToDay?>
                                         </div>
-                                        <div class="price-list__value"><?=$aProperties['MIN_PRICE_TODAY']?> ₽</div>
+                                        <div class="price-list__value"><?=$aProp['MIN_PRICE_TODAY']?> ₽</div>
                                     </div>
                                     <div class="price-list__summary">
                                         <div class="list-icon">
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                         src="
-                                                         <?=CFile::GetPath($aProperties['SOLD']['VALUE']) ?>
-                                                            "/>
+                                                         src="<?=CFile::GetPath($aProp['SOLD']['VALUE'])?>"/>
                                                 </div>
-                                                <div class="list-icon__text"><?=$aProperties['SOLD']?> продано</div>
+                                                <div class="list-icon__text"><?=$aProp['SOLD']?> продано</div>
                                             </div>
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                         src="
-                                                     <?=
-                                                        CFile::GetPath($aProperties['RESERVATION']['VALUE'])
-                                                        ?>"/>
+                                                         src="<?= CFile::GetPath($aProp['RESERVATION']['VALUE']) ?>"/>
                                                 </div>
                                                 <div class="list-icon__text">
-                                                    <?=$aProperties['RESERVATION']?> забронировано
+                                                    <?=$aProp['RESERVATION']?> забронировано
                                                 </div>
                                             </div>
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                       src="
-                                                       <?=
-                                                        CFile::GetPath($aProperties['AVAILABLE']['VALUE'])
-                                                        ?>"/>
+                                                       src="<?= CFile::GetPath($aProp['AVAILABLE']['VALUE'])?>"/>
                                                 </div>
                                                 <div class="list-icon__text">
-                                                    <?=$aProperties['AVAILABLE']?> доступно
+                                                    <?=$aProp['AVAILABLE']?> доступно
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +101,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                             <div class="accordion__header-text accordion__header-text--grid">
                                 <div class="accordion__header-text-primary"><?=$arElement['NAME']?></div>
                                 <div class="accordion__header-text-secondary accordion__header-text-secondary--bold">от
-                                    <?=$aProperties['MIN_PRICE']?> до <?=$aProperties['MAX_PRICE']?> ₽
+                                    <?=$aProp['MIN_PRICE']?> до <?=$aProp['MAX_PRICE']?> ₽
                                 </div>
                             </div>
                         </div>
@@ -119,46 +111,38 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     участки
                                 </div>
                                 <div class="price-list__value">
-                                    <?='от '.$aProperties['MIN_SQUARE'].' до '.$aProperties['MAX_SQUARE'].' соток'?>
+                                    <?='от '.$aProp['MIN_SQUARE'].' до '.$aProp['MAX_SQUARE'].' соток'?>
                                 </div>
                             </div>
                             <div class="price-list__information">
                                 <div class="price-list__text"><?='Минимальная стоимость 1 сотки на '.$sToDay?></div>
-                                <div class="price-list__value"><?=$aProperties['MIN_PRICE_TODAY']?> ₽</div>
+                                <div class="price-list__value"><?=$aProp['MIN_PRICE_TODAY']?> ₽</div>
                             </div>
                             <div class="price-list__summary">
                                 <div class="list-icon">
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="
-                                                         <?=CFile::GetPath($aProperties['SOLD']['VALUE']) ?>
-                                                            "/>
+                                                 src="<?=CFile::GetPath($aProp['SOLD']['VALUE']) ?>"/>
                                         </div>
-                                        <div class="list-icon__text"><?=$aProperties['SOLD']?> продано</div>
+                                        <div class="list-icon__text"><?=$aProp['SOLD']?> продано</div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="
-                                                     <?=
-                                                 CFile::GetPath($aProperties['RESERVATION']['VALUE'])
-                                                 ?>"/>
+                                                 src="<?= CFile::GetPath($aProp['RESERVATION']['VALUE'])?>"/>
                                         </div>
                                         <div class="list-icon__text">
-                                            <?=$aProperties['RESERVATION']?> забронировано
+                                            <?=$aProp['RESERVATION']?> забронировано
                                         </div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="
-                                                       <?=
-                                                 CFile::GetPath($aProperties['AVAILABLE']['VALUE'])
-                                                 ?>"/>
+                                                 src="<?= CFile::GetPath($aProp['AVAILABLE']['VALUE'])?>"/>
                                         </div>
                                         <div class="list-icon__text">
-                                            <?=$aProperties['AVAILABLE']?> доступно
+                                            <?=$aProp['AVAILABLE']?> доступно
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +166,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                             <div class="accordion__header-text accordion__header-text--grid">
                                 <div class="accordion__header-text-primary"><?=$arElement['NAME']?></div>
                                 <div class="accordion__header-text-secondary accordion__header-text-secondary--bold">от
-                                    <?=$aProperties['MIN_PRICE']?> до <?=$aProperties['MAX_PRICE']?> ₽
+                                    <?=$aProp['MIN_PRICE']?> до <?=$aProp['MAX_PRICE']?> ₽
                                 </div>
                             </div>
                         </div>
@@ -192,46 +176,38 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     участки
                                 </div>
                                 <div class="price-list__value">
-                                    <?='от '.$aProperties['MIN_SQUARE'].' до '.$aProperties['MAX_SQUARE'].' соток'?>
+                                    <?='от '.$aProp['MIN_SQUARE'].' до '.$aProp['MAX_SQUARE'].' соток'?>
                                 </div>
                             </div>
                             <div class="price-list__information">
                                 <div class="price-list__text"><?='Минимальная стоимость 1 сотки на '.$sToDay?></div>
-                                <div class="price-list__value"><?=$aProperties['MIN_PRICE_TODAY']?> ₽</div>
+                                <div class="price-list__value"><?=$aProp['MIN_PRICE_TODAY']?> ₽</div>
                             </div>
                             <div class="price-list__summary">
                                 <div class="list-icon">
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="
-                                                         <?=CFile::GetPath($aProperties['SOLD']['VALUE']) ?>
-                                                            "/>
+                                                 src="<?=CFile::GetPath($aProp['SOLD']['VALUE']) ?>"/>
                                         </div>
-                                        <div class="list-icon__text"><?=$aProperties['SOLD']?> продано</div>
+                                        <div class="list-icon__text"><?=$aProp['SOLD']?> продано</div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="
-                                                     <?=
-                                                 CFile::GetPath($aProperties['RESERVATION']['VALUE'])
-                                                 ?>"/>
+                                                 src="<?= CFile::GetPath($aProp['RESERVATION']['VALUE'])?>"/>
                                         </div>
                                         <div class="list-icon__text">
-                                            <?=$aProperties['RESERVATION']?> забронировано
+                                            <?=$aProp['RESERVATION']?> забронировано
                                         </div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="
-                                                       <?=
-                                                 CFile::GetPath($aProperties['AVAILABLE']['VALUE'])
-                                                 ?>"/>
+                                                 src="<?= CFile::GetPath($aProp['AVAILABLE']['VALUE']) ?>"/>
                                         </div>
                                         <div class="list-icon__text">
-                                            <?=$aProperties['AVAILABLE']?> доступно
+                                            <?=$aProp['AVAILABLE']?> доступно
                                         </div>
                                     </div>
                                 </div>
