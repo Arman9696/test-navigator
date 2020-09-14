@@ -78,6 +78,8 @@ foreach ($arResult['ITEMS'] as $arKey => $arElement) {
 
     $aRunTime = array_shift($aRunTime);
 
+    $arResult['ITEMS'][$arKey]['PROP'] = [];
+
     $arResult['ITEMS'][$arKey]['PROP']['MIN_PRICE'] = (int) $aRunTime['MIN_PRICE'];
     $arResult['ITEMS'][$arKey]['PROP']['MAX_PRICE'] = (int) $aRunTime['MAX_PRICE'];
 
