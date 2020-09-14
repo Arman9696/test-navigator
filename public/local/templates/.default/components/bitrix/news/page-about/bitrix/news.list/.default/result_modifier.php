@@ -9,64 +9,29 @@ $arSelect = [
     "NAME",
     "PREVIEW_PICTURE",
     "PREVIEW_TEXT",
+    "IBLOCK_SECTION_ID",
     "PROPERTY_*",
 ];
+$oValues  = \IQDEV\Base\Helper::getIblockSectionId('about', 'Our-values');
+
+$oWhy = \IQDEV\Base\Helper::getIblockSectionId('about', 'WHY');
+
+$oFacts = \IQDEV\Base\Helper::getIblockSectionId('about', 'Facts');
+$oTrust = \IQDEV\Base\Helper::getIblockSectionId('about', 'Trust');
+
 $arFilter = [
     "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('about'),   // id инфоблока
-    "SECTION_ID" => \IQDEV\Base\Helper::getIblockSectionId('about', 'Our-values'),     // нужная секция
+    "SECTION_ID" => [$oValues,$oFacts,$oWhy,$oTrust]
 ];
 
-$Section_Our_values = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter, false, ["nPageSize" => 50], $arSelect);
+$SectionOurvalues = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter, false, ["nPageSize" => 50], $arSelect);
 
-while ($ar_result = $Section_Our_values->GetNextElement()) {
-    $arItem[] = $ar_result->GetFields();
-}
+while ($ar_result = $SectionOurvalues->GetNextElement()) {
+    $iSection = $ar_result->GetFields()['IBLOCK_SECTION_ID'];
 
-$arResult['Our-values'] = $arItem;
+    $arItem[$iSection][$index] = $ar_result->GetFields();
 
-$arItem = [];
-
-$arFilter2 = [
-    "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('about'),   // id инфоблока
-    "SECTION_ID" => \IQDEV\Base\Helper::getIblockSectionId('about', 'Facts'),     // нужная секция
-];
-
-$Section_Facts = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter2, false, ["nPageSize" => 50], $arSelect);
-
-while ($ar_result = $Section_Facts->GetNextElement()) {
-    $arItem[] = $ar_result->GetFields();
-}
-
-$arResult['Facts'] = $arItem;
-
-$arItem = [];
-
-$arFilter3 = [
-    "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('about'),   // id инфоблока
-    "SECTION_ID" => \IQDEV\Base\Helper::getIblockSectionId('about', 'WHY'),     // нужная секция
-];
-
-$Section_Why = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter3, false, ["nPageSize" => 50], $arSelect);
-
-while ($ar_result = $Section_Why->GetNextElement()) {
-    $arItem[$index] = $ar_result->GetFields();
-
-    $arItem[$index]["PROPERTIES"] = $ar_result->GetProperties();
+    $arItem[$iSection][$index]['PROPERTIES'] = $ar_result->GetProperties();
     $index++;
 }
-$arResult['WHY'] = $arItem;
-
-$arItem = [];
-
-$arFilter4 = [
-    "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('about'),   // id инфоблока
-    "SECTION_ID" => \IQDEV\Base\Helper::getIblockSectionId('about', 'Trust'),     // нужная секция
-];
-
-$Section_Trust = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter4, false, ["nPageSize" => 50], $arSelect);
-
-while ($ar_result = $Section_Trust->GetNextElement()) {
-    $arItem[] = $ar_result->GetFields();
-}
-
-$arResult['Trust'] = $arItem;
+$arResult['ITEMS_SECTION'] = $arItem;
