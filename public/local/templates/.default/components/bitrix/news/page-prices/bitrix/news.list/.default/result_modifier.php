@@ -27,12 +27,14 @@ $obEnum = (new CUserFieldEnum)->GetList([], $aFilter);
 $iStatusSold = $obEnum->GetNext()['ID'];
 
 $oPlots = new \IQDEV\Base\HighLoadBlock('Plots');
+$arItems = $arResult['ITEMS'];
+$iCountItems = count($arResult['ITEMS']);
+for ($iIndex = 0;$iIndex<$iCountItems;$iIndex++) {
 
-foreach ($arResult['ITEMS'] as $arKey => $arElement) {
     $arFilter = [
         'select' => ['MIN_PRICE','MAX_PRICE','MIN_SQUARE','MAX_SQUARE','MIN_PRICE_TODAY'],
         'filter'=>[
-            '=UF_PROJECT'=>$arElement['ID'],
+            '=UF_PROJECT'=>$arResult['ITEMS'][$iIndex]['ID'],
             '=UF_STATUS' =>$iStatusAvailable
         ],
         'runtime'=>[
@@ -47,7 +49,7 @@ foreach ($arResult['ITEMS'] as $arKey => $arElement) {
     $arFilterAvailable = [
         'select' => ['*'],
         'filter'=>[
-            '=UF_PROJECT'=>$arElement['ID'],
+            '=UF_PROJECT'=>$arResult['ITEMS'][$iIndex]['ID'],
             '=UF_STATUS' =>$iStatusAvailable
         ],
     ];
@@ -55,7 +57,7 @@ foreach ($arResult['ITEMS'] as $arKey => $arElement) {
     $arFilterReservation = [
         'select' => ['*'],
         'filter'=>[
-            '=UF_PROJECT'=>$arElement['ID'],
+            '=UF_PROJECT'=>$arResult['ITEMS'][$iIndex]['ID'],
             '=UF_STATUS' =>$iStatusReservation
         ],
     ];
@@ -63,7 +65,7 @@ foreach ($arResult['ITEMS'] as $arKey => $arElement) {
     $arFilterSold = [
         'select' => ['*'],
         'filter'=>[
-            '=UF_PROJECT'=>$arElement['ID'],
+            '=UF_PROJECT'=>$arResult['ITEMS'][$iIndex]['ID'],
             '=UF_STATUS' =>$iStatusSold
         ],
     ];
@@ -78,19 +80,19 @@ foreach ($arResult['ITEMS'] as $arKey => $arElement) {
 
     $aRunTime = array_shift($aRunTime);
 
-    $arResult['ITEMS'][$arKey]['PROP'] = [];
+    $arResult['ITEMS'][$iIndex]['PROP'] = [];
 
-    $arResult['ITEMS'][$arKey]['PROP']['MIN_PRICE'] = (int) $aRunTime['MIN_PRICE'];
-    $arResult['ITEMS'][$arKey]['PROP']['MAX_PRICE'] = (int) $aRunTime['MAX_PRICE'];
+    $arResult['ITEMS'][$iIndex]['PROP']['MIN_PRICE'] = (int) $aRunTime['MIN_PRICE'];
+    $arResult['ITEMS'][$iIndex]['PROP']['MAX_PRICE'] = (int) $aRunTime['MAX_PRICE'];
 
-    $arResult['ITEMS'][$arKey]['PROP']['MIN_SQUARE'] = $aRunTime['MIN_SQUARE'];
-    $arResult['ITEMS'][$arKey]['PROP']['MAX_SQUARE'] = $aRunTime['MAX_SQUARE'];
+    $arResult['ITEMS'][$iIndex]['PROP']['MIN_SQUARE'] = $aRunTime['MIN_SQUARE'];
+    $arResult['ITEMS'][$iIndex]['PROP']['MAX_SQUARE'] = $aRunTime['MAX_SQUARE'];
 
-    $arResult['ITEMS'][$arKey]['PROP']['MIN_PRICE_TODAY'] = $aRunTime['MIN_PRICE_TODAY'];
+    $arResult['ITEMS'][$iIndex]['PROP']['MIN_PRICE_TODAY'] = $aRunTime['MIN_PRICE_TODAY'];
 
-    $arResult['ITEMS'][$arKey]['PROP']['AVAILABLE'] = $iCountAvailavle;
+    $arResult['ITEMS'][$iIndex]['PROP']['AVAILABLE'] = $iCountAvailavle;
 
-    $arResult['ITEMS'][$arKey]['PROP']['RESERVATION'] = $iCountReservation;
+    $arResult['ITEMS'][$iIndex]['PROP']['RESERVATION'] = $iCountReservation;
 
-    $arResult['ITEMS'][$arKey]['PROP']['SOLD'] = $iCountSold;
+    $arResult['ITEMS'][$iIndex]['PROP']['SOLD'] = $iCountSold;
 }
