@@ -27,9 +27,11 @@ $obEnum = (new CUserFieldEnum)->GetList([], $aFilter);
 $iStatusSold = $obEnum->GetNext()['ID'];
 
 $oPlots = new \IQDEV\Base\HighLoadBlock('Plots');
+
 $arItems = $arResult['ITEMS'];
+
 $iCountItems = count($arResult['ITEMS']);
-for ($iIndex = 0;$iIndex<$iCountItems;$iIndex++) {
+for ($iIndex = 0; $iIndex<$iCountItems; $iIndex++) {
 
     $arFilter = [
         'select' => ['MIN_PRICE','MAX_PRICE','MIN_SQUARE','MAX_SQUARE','MIN_PRICE_TODAY'],
