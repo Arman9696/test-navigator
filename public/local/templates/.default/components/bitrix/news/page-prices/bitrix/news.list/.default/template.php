@@ -220,7 +220,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                 </div>
             </div>
             <div class="price-list__enumeration price-list__enumeration--gray">
-                <div class="price-list__enumeration-title"><?=$arElement['PROPERTIES']['COMMUNICATIONS_TITLE']['VALUE']?></div>
+                <div class="price-list__enumeration-title">
+                    <?=$arElement['PROPERTIES']['COMMUNICATIONS_TITLE']['VALUE']?>
+                </div>
                 <ul class="price-list__list">
                     <?foreach ($arElement['PROPERTIES']['COMMUNICATIONS']['VALUE'] as $strItem) {?>
                         <li class="price-list__list-item">
