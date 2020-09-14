@@ -12,7 +12,6 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             <div class="price-list__accordion">
                 <div class="accordion-container js-accordion">
                     <?foreach ($arResult['ITEMS'] as $arKey => $arElement) {?>
-                        <?$arProperties = $arElement['PROPERTIES']?>
                         <? if ($arKey == 0) {?>
                             <div class="accordion accordion--active">
                                 <div class="accordion__header">
@@ -56,14 +55,19 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                         src="<?=CFile::GetPath($arProperties['SOLD']['VALUE']) ?>"/>
+                                                         src="
+                                                         <?=CFile::GetPath($arElement['PROPERTIES']['SOLD']['VALUE']) ?>
+                                                            "/>
                                                 </div>
                                                 <div class="list-icon__text"><?=$arElement['SOLD']?> продано</div>
                                             </div>
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                     src="<?=CFile::GetPath($arProperties['RESERVATION']['VALUE']) ?>"/>
+                                                         src="
+                                                     <?=
+                                                        CFile::GetPath($arElement['PROPERTIES']['RESERVATION']['VALUE'])
+                                                        ?>"/>
                                                 </div>
                                                 <div class="list-icon__text">
                                                     <?=$arElement['RESERVATION']?> забронировано
@@ -72,7 +76,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                       src="<?=CFile::GetPath($arProperties['AVAILABLE']['VALUE']) ?>"/>
+                                                       src="
+                                                       <?=
+                                                        CFile::GetPath($arElement['PROPERTIES']['AVAILABLE']['VALUE'])
+                                                        ?>"/>
                                                 </div>
                                                 <div class="list-icon__text">
                                                     <?=$arElement['AVAILABLE']?> доступно
@@ -123,14 +130,14 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arProperties['SOLD']['VALUE'])?>"/>
+                                                 src="<?=CFile::GetPath($arElement['PROPERTIES']['SOLD']['VALUE'])?>"/>
                                         </div>
                                         <div class="list-icon__text"><?=$arElement['SOLD']?> продано</div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arProperties['RESERVATION']['VALUE']) ?>"/>
+                                                 src="<?=CFile::GetPath($arElement['RESERVATION']['VALUE']) ?>"/>
                                         </div>
                                         <div class="list-icon__text">
                                             <?=$arElement['RESERVATION']?> забронировано
@@ -139,7 +146,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arProperties['AVAILABLE']['VALUE'])?>"/>
+                                                 src="<?=CFile::GetPath($arElement['AVAILABLE']['VALUE'])?>"/>
                                         </div>
                                         <div class="list-icon__text">
                                             <?=$arElement['AVAILABLE']?> доступно
@@ -188,14 +195,14 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arProperties['SOLD']['VALUE'])?>"/>
+                                                 src="<?=CFile::GetPath($arElement['SOLD']['VALUE'])?>"/>
                                         </div>
                                         <div class="list-icon__text"><?=$arElement['SOLD']?> продано</div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arProperties['RESERVATION']['VALUE']) ?>"/>
+                                                 src="<?=CFile::GetPath($arElement['RESERVATION']['VALUE']) ?>"/>
                                         </div>
                                         <div class="list-icon__text">
                                             <?=$arElement['RESERVATION']?> забронировано
@@ -204,7 +211,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($arProperties['AVAILABLE']['VALUE'])?>"/>
+                                                 src="<?=CFile::GetPath($arElement['AVAILABLE']['VALUE'])?>"/>
                                         </div>
                                         <div class="list-icon__text">
                                             <?=$arElement['AVAILABLE']?> доступно
@@ -220,9 +227,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                 </div>
             </div>
             <div class="price-list__enumeration price-list__enumeration--gray">
-                <div class="price-list__enumeration-title"><?=$arProperties['COMMUNICATIONS_TITLE']['VALUE']?></div>
+                <div class="price-list__enumeration-title"><?=$arElement['COMMUNICATIONS_TITLE']['VALUE']?></div>
                 <ul class="price-list__list">
-                    <?foreach ($arProperties['COMMUNICATIONS']['VALUE'] as $strItem) {?>
+                    <?foreach ($arElement['COMMUNICATIONS']['VALUE'] as $strItem) {?>
                         <li class="price-list__list-item">
                             <?=$strItem?>
                         </li>
