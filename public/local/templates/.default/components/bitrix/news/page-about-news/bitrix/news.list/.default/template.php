@@ -3,6 +3,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 };
 ?>
+<<<<<<<<< Temporary merge branch 1
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
+?>
+=========
+>>>>>>>>> Temporary merge branch 2
 <div class="tabs__content js-tabs__content active" data-tab-content="news">
     <div class="slider glide js-slider">
         <div class="slider__body">
