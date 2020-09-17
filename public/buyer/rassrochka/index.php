@@ -1,17 +1,14 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
-$APPLICATION->SetPageProperty("description",
-    "Земельные участки в Тюмени от девелоперской компании «Навигатор»,
-    у нас — ✔гарантия чистоты сделки; ✔удобное расположение; ✔собственная обслуживающая компания ☎ +7 3452 564-275");
 $APPLICATION->SetPageProperty("title",
-    "Вакансии");
+    "Рассрочка");
 global $APPLICATION;
 $APPLICATION->SetTitle("Global");
 ?>
 <?$APPLICATION->IncludeComponent(
     "bitrix:news",
-    "page-buyer",
+    "page-rassrochka",
     Array(
         "ACTIVE_DATE_FORMAT" => "d.m.Y",
         "DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -45,14 +42,10 @@ $APPLICATION->SetTitle("Global");
         "SORT_ORDER1"=> "ASC",
         'LIST_PROPERTY_CODE'=> [
             'ICON',
-            'TEXT',
-            'MODAL'
+            'COLOR'
         ],
-
-
     )
-);?>
+);
+?>
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
-
-
