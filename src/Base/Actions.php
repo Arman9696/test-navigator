@@ -2,6 +2,8 @@
 
 namespace IQDEV\Base;
 
+use IQDEV\Forms\FormsHandler;
+
 class Actions
 {
     /**
@@ -131,5 +133,27 @@ class Actions
     public function testSendAjaxAction()
     {
         $this->setAjaxResponse($this->oRequest);
+    }
+
+    /**
+     * Обработка формы подписки
+     *
+     * @return void
+     */
+    public function formSubscribeAjaxAction()
+    {
+        $aResult = FormsHandler::subscribeNewsAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    /**
+     * Обработка формы калькулятор
+     *
+     * @return void
+     */
+    public function formCalculationAjaxAction()
+    {
+        $aResult = FormsHandler::calculatebuyerAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
     }
 }
