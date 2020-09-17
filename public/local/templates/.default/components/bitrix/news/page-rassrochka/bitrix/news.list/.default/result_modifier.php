@@ -10,10 +10,10 @@ $oRassrochka = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter, false, ["nP
 
 $Item  = [];
 $index = 0;
-while ($ar_result = $oRassrochka->GetNextElement()) {
-    $Item[$index] = $ar_result->GetFields();
+while ($aItems = $oRassrochka->GetNextElement()) {
+    $Item[$index] = $aItems->GetFields();
 
-    $Item[$index]["PROPERTIES"] = $ar_result->GetProperties();
+    $Item[$index]["PROPERTIES"] = $aItems->GetProperties();
     $index++;
 }
 $arResult['rassrochka'] = $Item;

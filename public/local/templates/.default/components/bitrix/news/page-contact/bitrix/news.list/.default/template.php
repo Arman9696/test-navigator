@@ -11,23 +11,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
         <div class="contact-page">
             <div class="contact-page__info">
                 <div class="contact-page-info">
+                    <?$aElements = array_shift($arResult['ITEMS'])?>
                     <div class="contact-page-info__image">
-                        <img src="<?=$arResult['ITEMS'][0]['PREVIEW_PICTURE']['SRC']?>"/>
+                        <img src="<?=$aElements['PREVIEW_PICTURE']['SRC']?>"/>
                     </div>
-                    <?=$arResult['ITEMS'][0]['PREVIEW_TEXT']?>
+                    <?=$aElements['PREVIEW_TEXT']?>
             </div>
             <div class="contact-page__gallery">
                 <div class="gallery js-gallery">
                     <div class="gallery__container">
-                            <?foreach ($arResult['ITEMS'] as $arElement) {
-                                foreach ($arElement['PROPERTIES']['PHOTO']['VALUE'] as $iPhoto) {?>
+                            <? foreach ($aElements['PROPERTIES']['PHOTO']['VALUE'] as $iPhoto) {?>
                         <div class="gallery__item">
                             <a class="gallery-item" href="https://source.unsplash.com/500x500"
                                data-fancybox="photo_large" data-options="{&quot;backFocus&quot; : false}">
                                 <img class="gallery-item__image" src="<?=CFile::GetPath($iPhoto)?>"
                                      width="100%"/>
                             </a></div>
-                                <?}?>
                             <?}?>
                     </div>
                     <div class="gallery__open">
@@ -57,8 +56,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
                         <div class="gallery__slider__container js-gallery__slider__container">
                             <div class="gallery__slider__container__track" data-glide-el="track">
                                 <div class="glide__slides">
-                            <?foreach ($arResult['ITEMS'] as $arElement) {
-                                foreach ($arElement['PROPERTIES']['PHOTO']['VALUE'] as $iPhoto) {?>
+                            <? foreach ($aElements['PROPERTIES']['PHOTO']['VALUE'] as $iPhoto) {?>
                                     <div class="glide__slide">
                                         <a class="gallery-item"
                                            href="https://source.unsplash.com/500x500" data-fancybox="photo_mobile"
@@ -67,7 +65,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/menu.php';
                                                  width="100%"/>
                                         </a>
                                     </div>
-                                <?}?>
                             <?}?>
                                 </div>
                             </div>
