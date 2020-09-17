@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
 $APPLICATION->SetPageProperty("title",
-    "Вакансии");
+    "Рассрочка");
 global $APPLICATION;
 $APPLICATION->SetTitle("Global");
 ?>
