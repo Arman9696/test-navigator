@@ -243,7 +243,12 @@ class FormsHandler
             $iTerm  = filter_var($aData['term'], FILTER_SANITIZE_NUMBER_INT);
             $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
 
-            $sIs_member    = "";
+            if ($aData['is_member'] == false) {
+                $sIs_member = "Не участник";
+            } else {
+                $sIs_member = "Является участником";
+            }
+
             $Selected_Bank = "";
 
             $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
@@ -279,12 +284,6 @@ class FormsHandler
                 'IS_MEMBER' => $sIs_member
 
             ];
-
-            if ($aData['is_member'] == false) {
-                $sIs_member = "Не участник";
-            } else {
-                $sIs_member = "Является участником";
-            }
 
             $aResult = [
                 'status' => true,
