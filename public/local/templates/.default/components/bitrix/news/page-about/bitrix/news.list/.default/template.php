@@ -5,6 +5,13 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 ?>
 <?php
 $options =  IQDEV\Options\Options::getPageOptions('about');
+$oValues =  \IQDEV\Base\Helper::getIblockSectionId('about', 'Our-values');
+$arItems = array_shift($arResult['ITEMS']);
+
+$oFacts = \IQDEV\Base\Helper::getIblockSectionId('about', 'Facts');
+$oTrust =  \IQDEV\Base\Helper::getIblockSectionId('about', 'Trust');
+
+$oWhy = \IQDEV\Base\Helper::getIblockSectionId('about', 'WHY');
 ?>
 <section class="section mb-medium">
     <div class="container">
@@ -30,9 +37,9 @@ $options =  IQDEV\Options\Options::getPageOptions('about');
             <div class="grid-layout__item grid-layout__item--md-span-column-1">
                 <div class="grid-card grid-card--background-green grid-card--color-white">
                     <div class="grid-card__content">
-                        <div class="grid-card__title"><?=$arResult['ITEMS'][0]['NAME']?></div>
+                        <div class="grid-card__title"><?=$arItems['NAME']?></div>
                         <div class="grid-card__subtext">
-                            <?=$arResult['ITEMS'][0]['PREVIEW_TEXT']?>
+                            <?=$arItems['PREVIEW_TEXT']?>
                         </div>
                     </div>
                 </div>
@@ -48,7 +55,7 @@ $options =  IQDEV\Options\Options::getPageOptions('about');
                             <div class="slider-simple__body">
                                 <div class="glide__track" data-glide-el="track">
                                     <div class="glide__slides">
-                                        <?foreach ($arResult['Our-values'] as $arElement) {?>
+                                        <?foreach ($arResult['ITEMS_SECTION'][$oValues] as $arElement) {?>
                                         <div class="glide__slide">
                                             <div class="slider-simple-text">
                                                 <div class="slider-simple-text__title"><?=$arElement['NAME']?></div>
@@ -80,7 +87,7 @@ $options =  IQDEV\Options\Options::getPageOptions('about');
                                         </div>
                                     </div>
                                     <ul class="slider-simple-controls__list" data-glide-el="controls[nav]">
-                                        <?foreach ($arResult['Our-values'] as $arKey => $arElement) {?>
+                                        <?foreach ($arResult['ITEMS_SECTION'][$oValues] as $arKey => $arElement) {?>
                                         <li class="glide__bullet" data-glide-dir="=0"><?=$arKey?></li>
                                         <? } ?>
                                     </ul>
@@ -115,11 +122,13 @@ $options =  IQDEV\Options\Options::getPageOptions('about');
             <?=$options['Facts']?>
         </div>
         <div class="grid-layout grid-layout--gap-15 grid-layout--col-4">
+            <?foreach ($arResult['ITEMS_SECTION'][$oFacts] as $arKey => $arElement) {?>
+                <?if ($arKey == 5) {?>
             <div class="grid-layout__item grid-layout__item--md-span-column-2 grid-layout__item--lg-span-column-2"><a
                         class="grid-card" href="#"><img class="grid-card__image" src="http://placehold.it/1920x800"/>
                     <div class="grid-card__arrow-link">
                         <div>
-                            <?=$arResult['Facts'][0]['NAME']?>
+                            <?=$arElement['NAME']?>
                         </div>
                         <div class="grid-card__arrow-link-link">
                             <div class="arrow-link arrow-link--right">
@@ -147,65 +156,77 @@ $options =  IQDEV\Options\Options::getPageOptions('about');
                         </div>
                     </div>
                 </a></div>
+                <? } ?>
+                <?if ($arKey == 6) {?>
             <div class="grid-layout__item grid-layout__item--md-span-column-2 grid-layout__item--lg-span-column-1">
                 <div class="grid-card grid-card--background-blue grid-card--color-white">
                     <div class="grid-card__content">
                         <div class="grid-card__title">
-                            <?=$arResult['Facts'][1]['NAME']?>
+                            <?=$arElement['NAME']?>
                         </div>
                     </div>
                 </div>
             </div>
+                <? } ?>
+                <?if ($arKey == 7) {?>
             <div class="grid-layout__item grid-layout__item--md-span-column-2 grid-layout__item--lg-span-column-1">
                 <div class="grid-card grid-card--background-sand">
                     <div class="grid-card__grow">
                         <div class="grid-card__content">
                             <div class="grid-card__title">
-                                <?=$arResult['Facts'][2]['NAME']?>
+                                <?=$arElement['NAME']?>
                             </div>
                             <div class="grid-card__subtitle">
-                                <?=$arResult['Facts'][2]['PREVIEW_TEXT']?>
+                                <?=$arElement['PREVIEW_TEXT']?>
                             </div>
                         </div>
                     </div>
                     <a class="grid-card__button" href="#">Выбрать участок</a></div>
             </div>
+                <? } ?>
+                <?if ($arKey == 8) {?>
             <div class="grid-layout__item grid-layout__item--md-span-column-2 grid-layout__item--lg-span-column-1">
                 <div class="grid-card grid-card--border">
                     <div class="grid-card__content">
                         <div class="grid-card__title">
-                            <?=$arResult['Facts'][3]['NAME']?>
+                            <?=$arElement['NAME']?>
                         </div>
                         <div class="grid-card__subtitle">
-                            <?=$arResult['Facts'][3]['PREVIEW_TEXT']?>
+                            <?=$arElement['PREVIEW_TEXT']?>
                         </div>
                     </div>
                 </div>
             </div>
+                <? } ?>
+                <?if ($arKey == 9) {?>
             <div class="grid-layout__item grid-layout__item--md-span-column-2 grid-layout__item--lg-span-column-2">
                 <div class="grid-card grid-card--background-primary grid-card--color-white">
                     <div class="grid-card__content">
                         <div class="grid-card__title">
-                            <?=$arResult['Facts'][4]['NAME']?>
+                            <?=$arElement['NAME']?>
                         </div>
                         <div class="grid-card__subtitle">
-                            <?=$arResult['Facts'][4]['PREVIEW_TEXT']?>
+                            <?=$arElement['PREVIEW_TEXT']?>
                         </div>
                     </div>
                 </div>
             </div>
+                <? } ?>
+                <? if ($arKey == 10) {?>
             <div class="grid-layout__item grid-layout__item--md-span-column-2 grid-layout__item--lg-span-column-1">
                 <div class="grid-card grid-card--background-sand">
                     <div class="grid-card__content">
                         <div class="grid-card__title">
-                            <?=$arResult['Facts'][5]['NAME']?>
+                            <?=$arElement['NAME']?>
                         </div>
                         <div class="grid-card__subtitle">
-                            <?=$arResult['Facts'][5]['PREVIEW_TEXT']?>
+                            <?=$arElement['PREVIEW_TEXT']?>
                         </div>
                     </div>
                 </div>
             </div>
+                <? } ?>
+            <? } ?>
         </div>
     </div>
 </section>
@@ -216,7 +237,7 @@ $options =  IQDEV\Options\Options::getPageOptions('about');
             <div class="slider__body">
                 <div class="glide__track" data-glide-el="track">
                     <div class="glide__slides">
-                        <? foreach ($arResult['WHY'] as $arElements) {?>
+                        <? foreach ($arResult['ITEMS_SECTION'][$oWhy] as $arElements) {?>
                         <div class="glide__slide">
                             <div class="card-list">
                                 <div class="card-list__icon">
@@ -248,7 +269,7 @@ $options =  IQDEV\Options\Options::getPageOptions('about');
             <div class="glide js-slider-trust">
                 <div class="glide__track" data-glide-el="track">
                     <div class="glide__slides">
-                        <?foreach ($arResult['Trust'] as $arElement) {?>
+                        <?foreach ($arResult['ITEMS_SECTION'][$oTrust] as $arElement) {?>
                         <div class="glide__slide">
                             <img class="img slider-trust__item"
                                  src="<?=CFile::GetPath($arElement['PREVIEW_PICTURE'])?>"/>
@@ -275,7 +296,7 @@ $options =  IQDEV\Options\Options::getPageOptions('about');
                             </div>
                         </div>
                         <ul class="slider-trust-controls__list glide__bullets" data-glide-el="controls[nav]">
-                            <?foreach ($arResult['Trust'] as $arKey => $arElement) {?>
+                            <?foreach ($arResult['ITEMS_SECTION'][$oTrust] as $arKey => $arElement) {?>
                             <li class="glide__bullet" data-glide-dir="=<?=$arKey?>"><?=$arKey?></li>
                             <?}?>
                         </ul>

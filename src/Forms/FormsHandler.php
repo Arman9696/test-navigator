@@ -55,8 +55,6 @@ class FormsHandler
             'IBLOCK_ID' => $iblockId,
             'NAME' => $aIblockFields['name'],
             'PROPERTY_VALUES' => $aIblockProperties,
-            'PREVIEW_TEXT'    =>$aIblockFields['PREVIEW_TEXT'],
-            'PREVIEW_PICTURE' =>$aIblockFields['PREVIEW_PICTURE'],
         ];
 
         $iItemId = $oEl->Add($aFields);
@@ -202,15 +200,15 @@ class FormsHandler
                 "RUB_ID" => Helper::getCrubricId('subsription')
             ];
 
-            $oSubscr = new CSubscription;
+            $subscr = new CSubscription;
 
             //can add without authorization
-            $iID = $oSubscr->Add($arFields);
-            if ($iID <= 0) {
-                throw new \RuntimeException($oSubscr->LAST_ERROR);
+            $ID = $subscr->Add($arFields);
+            if ($ID <= 0) {
+                throw new \RuntimeException($subscr->LAST_ERROR);
             }
 
-            CSubscription::Authorize($iID);
+            CSubscription::Authorize($ID);
 
 
             $aResult = [
@@ -245,8 +243,8 @@ class FormsHandler
             $iTerm  = filter_var($aData['term'], FILTER_SANITIZE_NUMBER_INT);
             $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
 
-
-            $sSelected_Bank = "";
+            $sIs_member    = "";
+            $Selected_Bank = "";
 
             $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
 
@@ -268,15 +266,8 @@ class FormsHandler
                     ["nPageSize" => 50],
                     $arSelect)->GetNextElement()->GetFields();
 
-                $sSelected_Bank = $oId_Element;
+                $Selected_Bank = $oId_Element;
             }
-
-            if ($aData['is_member'] == false) {
-                $sIs_member = "Не участник";
-            } else {
-                $sIs_member = "Является участником";
-            }
-
 
             $aProperties = [
                 'EMAIL' => $sEmail,
@@ -284,11 +275,16 @@ class FormsHandler
                 'FIRST_PAY' => $iFirst_pay,
                 'TERM' => $iTerm,
                 'CALCULATED_RATE' => $fCalculatedRate,
-                'SELECTED_BANK' => $sSelected_Bank,
+                'SELECTED_BANK' => $Selected_Bank,
                 'IS_MEMBER' => $sIs_member
 
             ];
 
+            if ($aData['is_member'] == false) {
+                $sIs_member = "Не участник";
+            } else {
+                $sIs_member = "Является участником";
+            }
 
             $aResult = [
                 'status' => true,
@@ -305,110 +301,15 @@ class FormsHandler
                 throw new \RuntimeException('Такая почта уже есть');
             }
 
-            $iID = self::addIblockElement('ras', $aData, $aProperties);
+            $ID = self::addIblockElement('ras', $aData, $aProperties);
 
-            if ($iID <= 0) {
+            if ($ID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
             $aResult = [
                 'status' => false,
                 'message' => $e->getMessage(),
-            ];
-        }
-        return $aResult;
-    }
-    /**
-     * Записывает отзывы
-     *
-     * @param $aData
-     *
-     * @return mixed
-     */
-    public static function reviewAjaxAction(array $aData)
-    {
-        try {
-            //Todo logics
-
-            global $USER;
-            $aProperties = [
-                'PHONE' =>$aData['phone']
-            ];
-
-            $aFields = [
-                'name' => $aData['name'],
-                'PREVIEW_TEXT' =>$aData['review'],
-                'PREVIEW_PICTURE' =>$_FILES['file']
-            ];
-
-            $aResult = [
-                'status' => true,
-                'name'   =>$aData['name'],
-                'phone'  =>$aData['phone'],
-                'review' =>$aData['review'],
-            ];
-
-            $iID = self::addIblockElement('reviews', $aFields, $aProperties);
-            if ($iID <= 0) {
-                throw new \RuntimeException($USER->LAST_ERROR);
-            }
-        } catch (\Throwable $e) {
-            $aResult = [
-                'status' => false,
-                'message' => $e->getMessage(),
-            ];
-        }
-        return $aResult;
-    }
-
-    /**
-     * Записывает вопросы в базу
-     *
-     * @param $aData
-     *
-     * @return mixed
-     */
-    public static function questionAjaxAction(array $aData)
-    {
-
-        try {
-            //TODO logics
-
-            global $USER;
-            $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
-            $sPhone = filter_var($aData['phone'], FILTER_SANITIZE_STRING);
-
-            $sQuestion    = filter_var($aData['question'], FILTER_SANITIZE_STRING);
-            $sVillageName = filter_var($aData['villageName'], FILTER_SANITIZE_STRING);
-            $iAreaNumber  = filter_var($aData['areaNumber'], FILTER_SANITIZE_STRING);
-
-            $aProperties = [
-                'EMAIL'         =>$sEmail,
-                'PHONE'         =>$sPhone,
-                'VILLAGE_NAME'  =>$sVillageName,
-                'QUESTION'      =>$sQuestion,
-                'AREA_NUMBER'   =>$iAreaNumber
-            ];
-
-            $aResult = [
-                'status'      =>true,
-                'email'       =>$sEmail,
-                'info'        =>$aData,
-                'phone'       =>$sPhone,
-                'villageName' =>$sVillageName,
-                'question'    =>$sQuestion,
-                'areaNumber'  =>$iAreaNumber
-            ];
-
-
-            $iID = self::addIblockElement('service-ask', $aData, $aProperties);
-            if ($iID <= 0) {
-                throw new \RuntimeException($USER->LAST_ERROR);
-            }
-        } catch (\Throwable $e) {
-            $aResult = [
-                'status'  =>false,
-                'message' =>$e->getMessage(),
             ];
         }
         return $aResult;
