@@ -1,9 +1,11 @@
 <?php
 $index = 0;
 
-$arFilter1 = [
-    "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('works-service'),   // id инфоблока
-];
+$iBlockWorksId = \IQDEV\Base\Helper::getIblockId('works-service');
+
+$iBlockQuestId = \IQDEV\Base\Helper::getIblockId('questions');
+
+$iBlockSotrId = \IQDEV\Base\Helper::getIblockId('sotrudniki');
 
 $arSelect = [
     "ID",
@@ -15,39 +17,46 @@ $arSelect = [
     "PROPERTY_*",
 ];
 
-$oIblock_News = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter1, false, ["nPageSize" => 50], $arSelect);
-while ($ar_result = $oIblock_News ->GetNextElement()) {
-    $arItem[$index] = $ar_result->GetFields();
+if ($iBlockWorksId) {
+    $oIblockWorks = CIBlockElement::GetList(["SORT" => "ASC"],
+        ["IBLOCK_ID"=>$iBlockWorksId],
+        false,
+        ["nPageSize" => 50],
+        $arSelect);
 
-    $arItem[$index]["PROPERTIES"] = $ar_result->GetProperties();
-    $index++;
+    while ($arItems = $oIblockWorks ->GetNextElement()) {
+        $arItem[$index] = $arItems->GetFields();
+
+        $arItem[$index]["PROPERTIES"] = $arItems->GetProperties();
+        $index++;
+    }
+    $arResult['works'] = $arItem;
 }
-$arResult['works'] = $arItem;
 
-$arItem = [];
-
-$arFilter2 = [
-    "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('questions'),   // id инфоблока
-];
-
-$oIblock_Quest = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter2, false, ["nPageSize" => 50], $arSelect);
-while ($ar_result = $oIblock_Quest ->GetNextElement()) {
-    $arItem [] = $ar_result->GetFields();
-    $index++;
+if ($iBlockQuestId) {
+    $oIblockQuest = CIBlockElement::GetList(["SORT" => "ASC"],
+        ["IBLOCK_ID"=>$iBlockQuestId],
+        false,
+        ["nPageSize" => 50],
+        $arSelect);
+    while ($arItems = $oIblockQuest ->GetNextElement()) {
+        $arItem [] = $arItems->GetFields();
+        $index++;
+    }
+    $arResult['quest'] = $arItem;
 }
-$arResult['quest'] = $arItem;
 
-$arItem = [];
+if ($iBlockSotrId) {
+    $oIblockSotr = CIBlockElement::GetList(["SORT" => "ASC"],
+        ["IBLOCK_ID"=>$iBlockSotrId],
+        false,
+        ["nPageSize" => 50],
+        $arSelect);
+    while ($arItems = $oIblockSotr ->GetNextElement()) {
+        $arItem[$index] = $arItems->GetFields();
 
-$arFilter3 = [
-    "IBLOCK_ID" => \IQDEV\Base\Helper::getIblockId('sotrudniki'),   // id инфоблока
-];
-
-$oIblock_Sotrudniki = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter3, false, ["nPageSize" => 50], $arSelect);
-while ($ar_result = $oIblock_Sotrudniki ->GetNextElement()) {
-    $arItem[$index] = $ar_result->GetFields();
-
-    $arItem[$index]["PROPERTIES"] = $ar_result->GetProperties();
-    $index++;
+        $arItem[$index]["PROPERTIES"] = $arItems->GetProperties();
+        $index++;
+    }
+    $arResult['sotrudniki'] = $arItem;
 }
-$arResult['sotrudniki'] = $arItem;

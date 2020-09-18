@@ -72,7 +72,7 @@ class FormsHandler
      *
      * @return mixed
      */
-    private static function issetIblockElement($sIblockCode, $aProperties, $aProperties_Value, $iValue)
+    private static function isSetIblockElement($sIblockCode, $aProperties, $aProperties_Value, $iValue)
     {
         $iblockId = \IQDEV\Base\Helper::getIblockId($sIblockCode);
         $bIsset   = true;
@@ -244,44 +244,44 @@ class FormsHandler
             $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
 
             if ($aData['is_member'] == false) {
-                $sIs_member = "Не участник";
+                 $sMember = "Не участник";
             } else {
-                $sIs_member = "Является участником";
+                 $sMember = "Является участником";
             }
 
-            $Selected_Bank = "";
+            $SelectedBank = "";
 
-            $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
+            $iFirstPay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
 
             $aData['name']   = filter_var($aData['name'], FILTER_SANITIZE_STRING);
             $fCalculatedRate = filter_var($aData['calculatedRate'], FILTER_SANITIZE_STRING);
 
-            $oIblock_id = \IQDEV\Base\Helper::getIblockId('bank');
+            $oIblockId = \IQDEV\Base\Helper::getIblockId('bank');
 
             if (!empty($sBank)) {
                 $arFilter = [
-                    "IBLOCK_ID" => $oIblock_id,
+                    "IBLOCK_ID" => $oIblockId,
                     "CODE" => $sBank
                 ];
                 $arSelect = ["ID"];
 
-                $oId_Element = \CIBlockElement::GetList(["SORT" => "ASC"],
+                $oIdElement = \CIBlockElement::GetList(["SORT" => "ASC"],
                     $arFilter,
                     false,
                     ["nPageSize" => 50],
                     $arSelect)->GetNextElement()->GetFields();
 
-                $Selected_Bank = $oId_Element;
+                $SelectedBank = $oIdElement;
             }
 
             $aProperties = [
                 'EMAIL' => $sEmail,
                 'COST' => $iCost,
-                'FIRST_PAY' => $iFirst_pay,
+                'FIRST_PAY' => $iFirstPay,
                 'TERM' => $iTerm,
                 'CALCULATED_RATE' => $fCalculatedRate,
-                'SELECTED_BANK' => $Selected_Bank,
-                'IS_MEMBER' => $sIs_member
+                'SELECTED_BANK' => $SelectedBank,
+                'IS_MEMBER' =>  $sMember
 
             ];
 
@@ -290,13 +290,13 @@ class FormsHandler
                 'name' => $aData['name'],
                 'email' => $sEmail,
                 'cost' => $iCost,
-                'first_pay' => $iFirst_pay,
+                'first_pay' => $iFirstPay,
                 'term' => $iTerm,
                 'calculatedRate' => $fCalculatedRate,
                 'selected_Bank' => $sBank
             ];
 
-            if (!self::issetIblockElement('ras', 'CODE', 'EMAIL', $sEmail)) {
+            if (!self::isSetIblockElement('ras', 'CODE', 'EMAIL', $sEmail)) {
                 throw new \RuntimeException('Такая почта уже есть');
             }
 
