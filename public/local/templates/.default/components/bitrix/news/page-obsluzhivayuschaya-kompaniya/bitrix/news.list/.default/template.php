@@ -3,7 +3,6 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 };
 ?>
-<?dump($arResult)?>
 <?$oOptions = IQDEV\Options\Options::getPageOptions('ok_page'); ?>
 <section class="section mb-large">
     <div class="container">
