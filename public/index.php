@@ -11,16 +11,6 @@ global $APPLICATION;
 
 $APPLICATION->SetTitle("Земельные участки в Тюмени");
 
-
-$iblockId = \IQDEV\Base\Helper::getIblockId('ras');
-$No_Empty = false;
-$aFields = [
-    'IBLOCK_ID'=>$iblockId,
-];
-
-
-$Element = \CIBlockElement::GetList([["SORT" => "ASC"]],$aFields,false, ["nPageSize" => 50]);
-$Element = $Element->GetNextElement()->GetProperties(false,["CODE" => "EMAIL"]);
 ?>
 
 <?php
