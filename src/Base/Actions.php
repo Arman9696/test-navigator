@@ -2,6 +2,8 @@
 
 namespace IQDEV\Base;
 
+use IQDEV\Forms\FormsHandler;
+
 class Actions
 {
     /**
@@ -131,5 +133,11 @@ class Actions
     public function testSendAjaxAction()
     {
         $this->setAjaxResponse($this->oRequest);
+    }
+
+    public function formInstallmentAjaxAction()
+    {
+        $arResult = FormsHandler::installmentAjaxAction($this->oRequest);
+        $this->setAjaxResponse($arResult);
     }
 }
