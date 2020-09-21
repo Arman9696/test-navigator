@@ -26,10 +26,11 @@ $options = IQDEV\Options\Options::getPageOptions('buyer_rassrochka');
                 </div>
             </div>
             <div class="modal__checkbox">
-                <div class="checkbox js-checkbox"><label class="checkbox__label"><input class="checkbox__field" type="checkbox"
-                                                                                        data-validate="required"/>
+                <div class="checkbox js-checkbox"><label class="checkbox__label">
+                        <input class="checkbox__field" type="checkbox" data-validate="required"/>
                         <div class="checkbox__custom checkbox__custom--border"></div>
-                        <div class="checkbox__text">Подтверждаю согласие с<a class="checkbox__link" href="#" target="_blank">
+                        <div class="checkbox__text">Подтверждаю согласие с<a class="checkbox__link" href="#"
+                                                                             target="_blank">
                                 политикой обработки персональных данных</a></div>
                     </label>
                     <div class="checkbox__error"></div>

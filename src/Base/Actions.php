@@ -157,6 +157,11 @@ class Actions
         $this->setAjaxResponse($aResult);
     }
 
+    /**
+     * Обработка формы консультации
+     *
+     * @return void
+     */
     public function formInstallmentAjaxAction()
     {
         $arResult = FormsHandler::installmentAjaxAction($this->oRequest);
