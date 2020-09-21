@@ -6,9 +6,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 ?>
 <?
 CModule::IncludeModule('iqdev.options');
-$options =  IQDEV\Options\Options::getPageOptions('footer');
+$oOptions =  IQDEV\Options\Options::getPageOptions('footer');
+
 $noEmpty = false;
-foreach ($options as $Item => $key) {
+foreach ($oOptions as $Item => $key) {
     if ($key == "") {
         $noEmpty = false;
         break;
@@ -229,8 +230,8 @@ foreach ($options as $Item => $key) {
             <div class="footer__contacts">
                 <div class="footer__contacts-title">Наши контакты</div>
                 <div class="footer__contacts-inner">
-                    <a class="footer__contacts-number roistat_phone_navig" href="<?=$options["href"]?>">
-                        <?=$options["number"]?>
+                    <a class="footer__contacts-number roistat_phone_navig" href="<?=$oOptions["href"]?>">
+                        <?=$oOptions["number"]?>
                         <svg class="footer__contacts-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.965 6.0925C4.045 8.215 5.785 9.9475 7.9075 11.035L9.5575 9.385C9.76 9.1825
@@ -242,10 +243,10 @@ foreach ($options as $Item => $key) {
                             </path>
                         </svg>
                     </a>
-                    <div class="footer__contacts-worktime"><?=$options["worktime"]?></div>
-                    <div class="footer__contacts-calltime"><?=$options["calltime"]?></div>
+                    <div class="footer__contacts-worktime"><?=$oOptions["worktime"]?></div>
+                    <div class="footer__contacts-calltime"><?=$oOptions["calltime"]?></div>
                     <div class="footer__contacts-address">
-                        <span><?=$options["address"]?><svg class="footer__contacts-icon" width="14" height="16
+                        <span><?=$oOptions["address"]?><svg class="footer__contacts-icon" width="14" height="16
              viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.75C0 2.98926 2.98929 0 6.75 0C10.5107
                      0 13.5 2.98926 13.4036 6.75C13.4036 8.58215 12.7286 10.3179 11.3786 11.5714C11.3786 11.6435
@@ -257,7 +258,7 @@ foreach ($options as $Item => $key) {
                           fill="white">
                     </path></svg>
                         </span>
-                        <a class="footer__contacts-map" href="<?=$options["url"][0]?>" target="_blank">
+                        <a class="footer__contacts-map" href="<?=$oOptions["url"][0]?>" target="_blank">
                             схема проезда</a>
                     </div>
                 </div>
@@ -266,8 +267,8 @@ foreach ($options as $Item => $key) {
         </div>
         <div class="footer__information">
             <div class="footer__information-item">
-                <div class="footer__information-subitem"><?=$options["informationSubItem"][0]?></div>
-                <div class="footer__information-subitem"><?=$options["informationSubItem"][1]?></div>
+                <div class="footer__information-subitem"><?=$oOptions["informationSubItem"][0]?></div>
+                <div class="footer__information-subitem"><?=$oOptions["informationSubItem"][1]?></div>
             </div>
             <div class="footer__information-item"><a class="footer__policy" href="#" target="_blank">Политика
                     конфиденциальности</a></div>
@@ -323,7 +324,7 @@ foreach ($options as $Item => $key) {
                     </svg>
                 </a></div>
         </div>
-        <div class="footer__offer"><?=$options["offer"]?></div>
+        <div class="footer__offer"><?=$oOptions["offer"]?></div>
             <? } ?>
     </div>
     </footer>
