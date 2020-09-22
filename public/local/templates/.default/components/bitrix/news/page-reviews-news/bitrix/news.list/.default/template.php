@@ -3,7 +3,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 };
 ?>
-<div class="tabs__content js-tabs__content active" data-tab-content="news">
+<div class="tabs__content js-tabs__content" data-tab-content="reviews">
     <div class="slider glide js-slider">
         <div class="slider__body">
             <div class="glide__track" data-glide-el="track">

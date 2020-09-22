@@ -9,6 +9,8 @@ $APPLICATION->SetPageProperty("title",
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 global $APPLICATION;
 
+$APPLICATION->SetTitle("Земельные участки в Тюмени");
+
 ?>
 
 <?php

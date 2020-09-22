@@ -3,9 +3,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 };
 ?>
-<?
-require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/buyer_menu.php';
-?>
+<? require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/buyer_menu.php'; ?>
 <section class="section mt-medium mb-large">
     <div class="container"><h1 class="section-header">Купить земельный участок под Тюменью - просто!</h1>
         <div class="work-stage-container">
