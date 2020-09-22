@@ -26,23 +26,24 @@ class Recaptcha
 
         $sValidatingUrl = getenv('VALIDATING_API');
 
-        $aData = [
-            'secret' => $sSecretKey,
-            'response' => $sUserCaptchaKey
-        ];
-
-        $options = [
-            'http' => [
-                'method' => 'POST',
-                'content' => http_build_query($aData)
-            ]
-        ];
-        $context = stream_context_create($options);
-        $sResult = file_get_contents($sValidatingUrl, false, $context);
-        $oResult = json_decode($sResult);
-        if ($oResult->score > 0.5) {
+        if (empty($sSecretKey) || empty($sValidatingUrl)) {
             return true;
         }
-        return false;
+            $aData = [
+                'secret' => $sSecretKey,
+                'response' => $sUserCaptchaKey
+            ];
+
+            $options = [
+                'http' => [
+                    'method' => 'POST',
+                    'content' => http_build_query($aData)
+                ]
+            ];
+            $context = stream_context_create($options);
+            $sResult = file_get_contents($sValidatingUrl, false, $context);
+            $oResult = json_decode($sResult);
+
+            return $oResult->score > 0.5;
     }
 }
