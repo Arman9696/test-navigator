@@ -393,7 +393,6 @@ class FormsHandler
             $aResult = [
                 'status'      =>true,
                 'email'       =>$sEmail,
-                'info'        =>$aData,
                 'phone'       =>$sPhone,
                 'villageName' =>$sVillageName,
                 'question'    =>$sQuestion,
