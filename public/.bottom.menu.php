@@ -24,7 +24,7 @@ $aMenuLinks = [
     ],
         [
         "Отзывы",
-        "2",
+        "/about/feedback/",
         [],
         [],
         ""

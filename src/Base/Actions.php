@@ -156,4 +156,16 @@ class Actions
         $aResult = FormsHandler::calculatebuyerAjaxAction($this->oRequest);
         $this->setAjaxResponse($aResult);
     }
+
+    /**
+     * Обработка формы на добавление отзывов
+     *
+     * @return void
+     */
+    public function formReviewAjaxAction()
+    {
+
+        $aResult = FormsHandler::reviewAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
 }
