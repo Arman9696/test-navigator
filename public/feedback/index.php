@@ -1,11 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
-$APPLICATION->SetPageProperty("description",
-    "Земельные участки в Тюмени от девелоперской компании «Навигатор», 
-    у нас — ✔гарантия чистоты сделки; ✔удобное расположение; ✔собственная обслуживающая компания ☎ +7 3452 564-275");
 $APPLICATION->SetPageProperty("title",
-    "Купить участок в Тюмени | ДК «Навигатор»");
+    "Оставьте отзыв");
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 global $APPLICATION;
 
@@ -15,7 +12,8 @@ $APPLICATION->SetTitle("Glob");
     <div class="modal js-modal" data-modal-open="review">
         <div class="modal__content">
             <div class="modal__title">Добавить отзыв</div>
-            <div class="modal__description">Оставьте контактные данные. Они не будут опубликованы на сайте. Мы свяжемся с вами
+            <div class="modal__description">Оставьте контактные данные. Они не будут опубликованы на сайте.
+                Мы свяжемся с вами
                 для подтверждения.
             </div>
             <form class="modal__form js-form" action="/?ajaxAction=formReview" data-name="review">
@@ -26,23 +24,24 @@ $APPLICATION->SetTitle("Glob");
                     </div>
                 </div>
                 <div class="modal__input">
-                    <div class="input js-input"><input class="input__field" type="text" name="phone" placeholder="Телефон"
+                    <div class="input js-input">
+                        <input class="input__field" type="text" name="phone" placeholder="Телефон"
                                                        data-validate="required,phone" data-masking="phone"/>
                         <div class="input__error"></div>
                     </div>
                 </div>
                 <div class="modal__input"><textarea class="modal__textarea" placeholder="Отзыв" name="review"></textarea></div>
-                <div class="modal__input"><label class="modal__file js-file"><input class="modal__file-input" type="file"
-                                                                                    name="file"
-                                                                                    data-validate="required,type=image"/>
+                <div class="modal__input"><label class="modal__file js-file">
+                        <input class="modal__file-input" type="file" name="file" data-validate="required,type=image"/>
                         <div class="modal__file-label">Прикрепить файл</div>
                         <div class="modal__file-error"></div>
                     </label></div>
                 <div class="modal__checkbox">
-                    <div class="checkbox js-checkbox"><label class="checkbox__label"><input class="checkbox__field" type="checkbox"
-                                                                                            data-validate="required"/>
+                    <div class="checkbox js-checkbox"><label class="checkbox__label">
+                            <input class="checkbox__field" type="checkbox" data-validate="required"/>
                             <div class="checkbox__custom checkbox__custom--border"></div>
-                            <div class="checkbox__text">Подтверждаю согласие с<a class="checkbox__link" href="#" target="_blank">
+                            <div class="checkbox__text">Подтверждаю согласие с<a class="checkbox__link"
+                                                                                 href="#" target="_blank">
                                     политикой обработки персональных данных</a></div>
                         </label>
                         <div class="checkbox__error"></div>

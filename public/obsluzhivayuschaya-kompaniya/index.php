@@ -1,44 +1,41 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
-$APPLICATION->SetPageProperty("description",
-    "Земельные участки в Тюмени от девелоперской компании «Навигатор»,
-    у нас — ✔гарантия чистоты сделки; ✔удобное расположение; ✔собственная обслуживающая компания ☎ +7 3452 564-275");
 $APPLICATION->SetPageProperty("title",
-    "О компании");
+    "Обслуживающая компания");
 global $APPLICATION;
 $APPLICATION->SetTitle("Global");
-$options = IQDEV\Options\Options::getPageOptions('ok_page');
+$oOptions = IQDEV\Options\Options::getPageOptions('ok_page');
 ?>
 
     <section class="section mb-medium">
         <div class="container">
             <div class="separate-paragraph">
                 <div class="separate-paragraph__title separate-paragraph__title--image">
-                    <img class="img" src="<?=$options['titleImage']?>"/>
+                    <img class="img" src="<?=$oOptions['titleImage']?>"/>
                 </div>
                 <div class="separate-paragraph__divider"></div>
                 <div class="separate-paragraph__text-wrapper">
                     <div class="separate-paragraph__text">
-                        <?=$options['paragraphHeader']['text']?>
+                        <?=$oOptions['paragraphHeader']['text']?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <section class="section mb-large">
-        <div class="container"><img class="img" src="<?=$options['paragraphHeader']['title_image']?>"/></div>
+        <div class="container"><img class="img" src="<?=$oOptions['paragraphHeader']['title_image']?>"/></div>
     </section>
     <section class="section mb-medium">
         <div class="container">
             <div class="separate-paragraph">
                 <div class="separate-paragraph__title">
-                    <span><?=$options['paragraphPermanentServices']['title']?></span>
+                    <span><?=$oOptions['paragraphPermanentServices']['title']?></span>
                 </div>
                 <div class="separate-paragraph__divider"></div>
                 <div class="separate-paragraph__text-wrapper">
                     <div class="separate-paragraph__text">
-                        <?=$options['paragraphPermanentServices']['text']?>
+                        <?=$oOptions['paragraphPermanentServices']['text']?>
                     </div>
                 </div>
             </div>

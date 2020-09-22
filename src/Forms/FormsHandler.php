@@ -247,69 +247,66 @@ class FormsHandler
             $iTerm  = filter_var($aData['term'], FILTER_SANITIZE_NUMBER_INT);
             $sBank  = filter_var($aData['selectedBank'], FILTER_SANITIZE_STRING);
 
+            if ($aData['is_member'] == false) {
+                 $sMember = "Не участник";
+            } else {
+                 $sMember = "Является участником";
+            }
 
-            $Selected_Bank = "";
+            $SelectedBank = "";
 
-            $iFirst_pay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
+            $iFirstPay = filter_var($aData['first-pay'], FILTER_SANITIZE_NUMBER_INT);
 
             $aData['name']   = filter_var($aData['name'], FILTER_SANITIZE_STRING);
             $fCalculatedRate = filter_var($aData['calculatedRate'], FILTER_SANITIZE_STRING);
 
-            $oIblock_id = \IQDEV\Base\Helper::getIblockId('bank');
+            $oIblockId = \IQDEV\Base\Helper::getIblockId('bank');
 
             if (!empty($sBank)) {
                 $arFilter = [
-                    "IBLOCK_ID" => $oIblock_id,
+                    "IBLOCK_ID" => $oIblockId,
                     "CODE" => $sBank
                 ];
                 $arSelect = ["ID"];
 
-                $oId_Element = \CIBlockElement::GetList(["SORT" => "ASC"],
+                $oIdElement = \CIBlockElement::GetList(["SORT" => "ASC"],
                     $arFilter,
                     false,
                     ["nPageSize" => 50],
                     $arSelect)->GetNextElement()->GetFields();
 
-                $Selected_Bank = $oId_Element;
+                $SelectedBank = $oIdElement;
             }
-
-            if ($aData['is_member'] == false) {
-                $sIs_member = "Не участник";
-            } else {
-                $sIs_member = "Является участником";
-            }
-
 
             $aProperties = [
                 'EMAIL' => $sEmail,
                 'COST' => $iCost,
-                'FIRST_PAY' => $iFirst_pay,
+                'FIRST_PAY' => $iFirstPay,
                 'TERM' => $iTerm,
                 'CALCULATED_RATE' => $fCalculatedRate,
-                'SELECTED_BANK' => $Selected_Bank,
-                'IS_MEMBER' => $sIs_member
+                'SELECTED_BANK' => $SelectedBank,
+                'IS_MEMBER' =>  $sMember
 
             ];
-
 
             $aResult = [
                 'status' => true,
                 'name' => $aData['name'],
                 'email' => $sEmail,
                 'cost' => $iCost,
-                'first_pay' => $iFirst_pay,
+                'first_pay' => $iFirstPay,
                 'term' => $iTerm,
                 'calculatedRate' => $fCalculatedRate,
                 'selected_Bank' => $sBank
             ];
 
-            if (!self::issetIblockElement('ras', 'CODE', 'EMAIL', $sEmail)) {
+            if (!self::isSetIblockElement('ras', 'CODE', 'EMAIL', $sEmail)) {
                 throw new \RuntimeException('Такая почта уже есть');
             }
 
-            $ID = self::addIblockElement('ras', $aData, $aProperties);
+            $iID = self::addIblockElement('ras', $aData, $aProperties);
 
-            if ($ID <= 0) {
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
@@ -350,8 +347,8 @@ class FormsHandler
                 'review' =>$aData['review'],
             ];
 
-            $ID = self::addIblockElement('reviews', $aFields, $aProperties);
-            if ($ID <= 0) {
+            $iID = self::addIblockElement('reviews', $aFields, $aProperties);
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
@@ -370,7 +367,7 @@ class FormsHandler
      *
      * @return mixed
      */
-    public static function questionAjaxAction(array $aData)
+    public static function questionserviceAjaxAction(array $aData)
     {
 
         try {
@@ -380,8 +377,7 @@ class FormsHandler
             $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
             $sPhone = filter_var($aData['phone'], FILTER_SANITIZE_STRING);
 
-            $sQuestion = filter_var($aData['question'], FILTER_SANITIZE_STRING);
-
+            $sQuestion    = filter_var($aData['question'], FILTER_SANITIZE_STRING);
             $sVillageName = filter_var($aData['villageName'], FILTER_SANITIZE_STRING);
             $iAreaNumber  = filter_var($aData['areaNumber'], FILTER_SANITIZE_STRING);
 
@@ -396,7 +392,6 @@ class FormsHandler
             $aResult = [
                 'status'      =>true,
                 'email'       =>$sEmail,
-                'info'        =>$aData,
                 'phone'       =>$sPhone,
                 'villageName' =>$sVillageName,
                 'question'    =>$sQuestion,
@@ -404,10 +399,49 @@ class FormsHandler
             ];
 
 
-            $ID = self::addIblockElement('service-ask', $aData, $aProperties);
-            if ($ID <= 0) {
+            $iID = self::addIblockElement('service-ask', $aData, $aProperties);
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
+        } catch (\Throwable $e) {
+            $aResult = [
+                'status'  =>false,
+                'message' =>$e->getMessage(),
+            ];
+        }
+        return $aResult;
+    }
+
+    /**
+     * Форма обратной связи по вопросам
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function questionAjaxAction(array $aData)
+    {
+        try { //TODO logics
+            $sPhone = filter_var($aData['phone'], FILTER_SANITIZE_EMAIL);
+            global $USER;
+            $aProperties = [
+                'PHONE' =>$sPhone,
+            ];
+
+            if (!self::issetIblockElement('news-reviews', 'CODE', 'PHONE', $sPhone)) {
+                throw new \RuntimeException('Вы уже оставили заявку,ждите когда с вами свяжутся!');
+            }
+
+            $iID = self::addIblockElement('news-reviews', $aData, $aProperties);
+            if ($iID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+
+            $aResult = [
+                'status'  =>true,
+                'name' =>$aData['name'],
+                'phone' =>$aData['phone']
+            ];
         } catch (\Throwable $e) {
             $aResult = [
                 'status'  =>false,
