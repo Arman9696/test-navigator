@@ -55,6 +55,8 @@ class FormsHandler
             'IBLOCK_ID' => $iblockId,
             'NAME' => $aIblockFields['name'],
             'PROPERTY_VALUES' => $aIblockProperties,
+            'PREVIEW_TEXT'    =>$aIblockFields['PREVIEW_TEXT'],
+            'PREVIEW_PICTURE' =>$aIblockFields['PREVIEW_PICTURE'],
         ];
 
         $iItemId = $oEl->Add($aFields);
@@ -72,7 +74,7 @@ class FormsHandler
      *
      * @return mixed
      */
-    private static function isSetIblockElement($sIblockCode, $aProperties, $aProperties_Value, $iValue)
+    private static function issetIblockElement($sIblockCode, $aProperties, $aProperties_Value, $iValue)
     {
         $iblockId = \IQDEV\Base\Helper::getIblockId($sIblockCode);
         $bIsset   = true;
@@ -300,15 +302,148 @@ class FormsHandler
                 throw new \RuntimeException('Такая почта уже есть');
             }
 
-            $ID = self::addIblockElement('ras', $aData, $aProperties);
+            $iID = self::addIblockElement('ras', $aData, $aProperties);
 
-            if ($ID <= 0) {
+            if ($iID <= 0) {
                 throw new \RuntimeException($USER->LAST_ERROR);
             }
         } catch (\Throwable $e) {
             $aResult = [
                 'status' => false,
                 'message' => $e->getMessage(),
+            ];
+        }
+        return $aResult;
+    }
+    /**
+     * Записывает отзывы
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function reviewAjaxAction(array $aData)
+    {
+        try {
+            //Todo logics
+
+            global $USER;
+            $aProperties = [
+                'PHONE' =>$aData['phone']
+            ];
+
+            $aFields = [
+                'name' => $aData['name'],
+                'PREVIEW_TEXT' =>$aData['review'],
+                'PREVIEW_PICTURE' =>$_FILES['file']
+            ];
+
+            $aResult = [
+                'status' => true,
+                'name'   =>$aData['name'],
+                'phone'  =>$aData['phone'],
+                'review' =>$aData['review'],
+            ];
+
+            $iID = self::addIblockElement('reviews', $aFields, $aProperties);
+            if ($iID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+        } catch (\Throwable $e) {
+            $aResult = [
+                'status' => false,
+                'message' => $e->getMessage(),
+            ];
+        }
+        return $aResult;
+    }
+
+    /**
+     * Записывает вопросы в базу
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function questionserviceAjaxAction(array $aData)
+    {
+
+        try {
+            //TODO logics
+
+            global $USER;
+            $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
+            $sPhone = filter_var($aData['phone'], FILTER_SANITIZE_STRING);
+
+            $sQuestion    = filter_var($aData['question'], FILTER_SANITIZE_STRING);
+            $sVillageName = filter_var($aData['villageName'], FILTER_SANITIZE_STRING);
+            $iAreaNumber  = filter_var($aData['areaNumber'], FILTER_SANITIZE_STRING);
+
+            $aProperties = [
+                'EMAIL'         =>$sEmail,
+                'PHONE'         =>$sPhone,
+                'VILLAGE_NAME'  =>$sVillageName,
+                'QUESTION'      =>$sQuestion,
+                'AREA_NUMBER'   =>$iAreaNumber
+            ];
+
+            $aResult = [
+                'status'      =>true,
+                'email'       =>$sEmail,
+                'phone'       =>$sPhone,
+                'villageName' =>$sVillageName,
+                'question'    =>$sQuestion,
+                'areaNumber'  =>$iAreaNumber
+            ];
+
+
+            $iID = self::addIblockElement('service-ask', $aData, $aProperties);
+            if ($iID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+        } catch (\Throwable $e) {
+            $aResult = [
+                'status'  =>false,
+                'message' =>$e->getMessage(),
+            ];
+        }
+        return $aResult;
+    }
+
+    /**
+     * Форма обратной связи по вопросам
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function questionAjaxAction(array $aData)
+    {
+        try { //TODO logics
+            $sPhone = filter_var($aData['phone'], FILTER_SANITIZE_EMAIL);
+            global $USER;
+            $aProperties = [
+                'PHONE' =>$sPhone,
+            ];
+
+            if (!self::issetIblockElement('news-reviews', 'CODE', 'PHONE', $sPhone)) {
+                throw new \RuntimeException('Вы уже оставили заявку,ждите когда с вами свяжутся!');
+            }
+
+            $iID = self::addIblockElement('news-reviews', $aData, $aProperties);
+            if ($iID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+
+            $aResult = [
+                'status'  =>true,
+                'name' =>$aData['name'],
+                'phone' =>$aData['phone']
+            ];
+        } catch (\Throwable $e) {
+            $aResult = [
+                'status'  =>false,
+                'message' =>$e->getMessage(),
             ];
         }
         return $aResult;
