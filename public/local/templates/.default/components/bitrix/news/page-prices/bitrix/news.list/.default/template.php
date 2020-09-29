@@ -56,14 +56,20 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                         src="<?=CFile::GetPath($aProp['SOLD']['VALUE'])?>"/>
+                                                         src="
+                                                         <?=
+                                                            CFile::GetPath($arElement['PROPERTIES']['SOLD']['VALUE'])
+                                                            ?>"/>
                                                 </div>
                                                 <div class="list-icon__text"><?=$aProp['SOLD']?> продано</div>
                                             </div>
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                         src="<?= CFile::GetPath($aProp['RESERVATION']['VALUE']) ?>"/>
+                                                     src="
+                                                     <?=
+                                                        CFile::GetPath($arElement['PROPERTIES']['RESERVATION']['VALUE'])
+                                                        ?>"/>
                                                 </div>
                                                 <div class="list-icon__text">
                                                     <?=$aProp['RESERVATION']?> забронировано
@@ -72,7 +78,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                             <div class="list-icon__item">
                                                 <div class="list-icon__icon">
                                                     <img class="img"
-                                                       src="<?= CFile::GetPath($aProp['AVAILABLE']['VALUE'])?>"/>
+                                                       src="
+                                                       <?=
+                                                          CFile::GetPath($arElement['PROPERTIES']['AVAILABLE']['VALUE'])
+                                                        ?>"/>
                                                 </div>
                                                 <div class="list-icon__text">
                                                     <?=$aProp['AVAILABLE']?> доступно
@@ -123,14 +132,20 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($aProp['SOLD']['VALUE']) ?>"/>
+                                                 src="
+                                                 <?=
+                                                    CFile::GetPath($arElement['PROPERTIES']['SOLD']['VALUE'])
+                                                    ?>"/>
                                         </div>
                                         <div class="list-icon__text"><?=$aProp['SOLD']?> продано</div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?= CFile::GetPath($aProp['RESERVATION']['VALUE'])?>"/>
+                                                 src="
+                                                 <?=
+                                                    CFile::GetPath($arElement['PROPERTIES']['RESERVATION']['VALUE'])
+                                                    ?>"/>
                                         </div>
                                         <div class="list-icon__text">
                                             <?=$aProp['RESERVATION']?> забронировано
@@ -139,7 +154,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?= CFile::GetPath($aProp['AVAILABLE']['VALUE'])?>"/>
+                                                 src="
+                                                 <?=
+                                                    CFile::GetPath($arElement['PROPERTIES']['AVAILABLE']['VALUE'])
+                                                    ?>"/>
                                         </div>
                                         <div class="list-icon__text">
                                             <?=$aProp['AVAILABLE']?> доступно
@@ -188,14 +206,20 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?=CFile::GetPath($aProp['SOLD']['VALUE']) ?>"/>
+                                                 src="
+                                                 <?=
+                                                    CFile::GetPath($arElement['PROPERTIES']['SOLD']['VALUE'])
+                                                    ?>"/>
                                         </div>
                                         <div class="list-icon__text"><?=$aProp['SOLD']?> продано</div>
                                     </div>
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?= CFile::GetPath($aProp['RESERVATION']['VALUE'])?>"/>
+                                                 src="
+                                                 <?=
+                                                    CFile::GetPath($arElement['PROPERTIES']['RESERVATION']['VALUE'])
+                                                    ?>"/>
                                         </div>
                                         <div class="list-icon__text">
                                             <?=$aProp['RESERVATION']?> забронировано
@@ -204,7 +228,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                                     <div class="list-icon__item">
                                         <div class="list-icon__icon">
                                             <img class="img"
-                                                 src="<?= CFile::GetPath($aProp['AVAILABLE']['VALUE']) ?>"/>
+                                                 src="
+                                                 <?=
+                                                    CFile::GetPath($arElement['PROPERTIES']['AVAILABLE']['VALUE'])
+                                                    ?>"/>
                                         </div>
                                         <div class="list-icon__text">
                                             <?=$aProp['AVAILABLE']?> доступно
