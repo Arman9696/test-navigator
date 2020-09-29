@@ -23,7 +23,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             <? if ($arItem["DEPTH_LEVEL"] > 1) { ?>
                 <a class="footer__navigation-subitem" href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a>
             <? } else { ?>
-                <a class="footer__navigation-item" href="#"><span><?=$arItem["TEXT"]?></span></a>
+                <a class="footer__navigation-item" href="<?=$arItem["LINK"]?>"><span><?=$arItem["TEXT"]?></span></a>
             <? } ?>
         <? } ?>
 

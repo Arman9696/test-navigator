@@ -18,10 +18,10 @@ $oList    = CIBlockElement::GetList(["SORT" => "ASC"], $arFilter, false, ["nPage
 $Item     = [];
 $index    = 0;
 
-while ($ar_result = $oList->GetNextElement()) {
-    $Item[$index] = $ar_result->GetFields();
+while ($arItems = $oList->GetNextElement()) {
+    $Item[$index] = $arItems->GetFields();
 
-    $Item[$index]["PROPERTIES"] = $ar_result->GetProperties();
+    $Item[$index]["PROPERTIES"] = $arItems->GetProperties();
     $index++;
 }
 $arResult['WHY'] = $Item;

@@ -158,6 +158,39 @@ class Actions
     }
 
     /**
+     * Обработка формы на добавление отзывов
+     *
+     * @return void
+     */
+    public function formReviewAjaxAction()
+    {
+        $aResult = FormsHandler::reviewAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    /**
+     * Обработка формы на вопросы , страница - service
+     *
+     * @return void
+     */
+    public function formQuestionServiceAjaxAction()
+    {
+        $aResult = FormsHandler::questionserviceAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    /**
+     * Обработка формы вопросов с деталок новостей
+     *
+     * @return void
+     */
+    public function formQuestionAjaxAction()
+    {
+        $aResult = FormsHandler::questionAjaxAction($this->oRequest);
+        $this->setAjaxResponse($aResult);
+    }
+
+    /**
      * Обработка формы консультации
      *
      * @return void

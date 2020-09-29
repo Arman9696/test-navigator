@@ -163,7 +163,8 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                 <div class="separate-paragraph__text-wrapper">
                     <div class="separate-paragraph__text separate-paragraph__text--large">Полный фотоотчет смотрите
                         в наших официальных группах в социальных сетях
-                        <div class="separate-paragraph__icons"><a class="separate-paragraph__icon" href="#">
+                        <div class="separate-paragraph__icons"><a class="separate-paragraph__icon"
+                                                                  href="<?=$arResult['SOCIAL']['facebook']?>">
                                 <div class="icon icon--middle-brown icon--hover-primary">
                                     <svg width="11" height="20" viewBox="0 0 11 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -174,7 +175,7 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                                         </path>
                                     </svg>
                                 </div>
-                            </a><a class="separate-paragraph__icon" href="#">
+                            </a><a class="separate-paragraph__icon" href="<?=$arResult['SOCIAL']['vkontakte']?>">
                                 <div class="icon icon--middle-brown icon--hover-primary">
                                     <svg width="25" height="14" viewBox="0 0 25 14" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -206,7 +207,7 @@ $APPLICATION->SetPageProperty('menu', 'N');?>
                                         </path>
                                     </svg>
                                 </div>
-                            </a><a class="separate-paragraph__icon" href="#">
+                            </a><a class="separate-paragraph__icon" href="<?=$arResult['SOCIAL']['odnoklassniki']?>">
                                 <div class="icon icon--middle-brown icon--hover-primary">
                                     <svg width="12" height="20" viewBox="0 0 12 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">

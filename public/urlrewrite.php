@@ -41,4 +41,5 @@ $arUrlRewrite = array(
             'PATH' => '/about/blog/index.php',
             'SORT' => 100,
         ),
+
 );
