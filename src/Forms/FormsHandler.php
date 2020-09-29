@@ -182,7 +182,6 @@ class FormsHandler
     public static function installmentAjaxAction(array $aData)
     {
         try {
-            // TODO logics
             global $USER;
             $sPhone = $aData['phone'];
 
@@ -224,7 +223,6 @@ class FormsHandler
     public static function subscribeNewsAjaxAction(array $aData)
     {
         try {
-            //  TODO Logics
             if (!CModule::IncludeModule('subscribe')) {
                 throw new \RuntimeException('Не удалось подключить модуль подписки');
             }
@@ -277,8 +275,6 @@ class FormsHandler
     public static function calculatebuyerAjaxAction(array $aData)
     {
         try {
-            //  TODO Logics
-
             global $USER;
             $sEmail = filter_var($aData['email'], FILTER_SANITIZE_EMAIL);
             $iCost  = filter_var($aData['cost'], FILTER_SANITIZE_NUMBER_INT);
