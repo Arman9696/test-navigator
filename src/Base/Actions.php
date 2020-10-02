@@ -169,7 +169,7 @@ class Actions
     }
 
     /**
-     * Обработка формы на вопросов в базe страница -service
+     * Обработка формы на вопросы , страница - service
      *
      * @return void
      */
@@ -188,5 +188,16 @@ class Actions
     {
         $aResult = FormsHandler::questionAjaxAction($this->oRequest);
         $this->setAjaxResponse($aResult);
+    }
+
+    /**
+     * Обработка формы консультации
+     *
+     * @return void
+     */
+    public function formInstallmentAjaxAction()
+    {
+        $arResult = FormsHandler::installmentAjaxAction($this->oRequest);
+        $this->setAjaxResponse($arResult);
     }
 }

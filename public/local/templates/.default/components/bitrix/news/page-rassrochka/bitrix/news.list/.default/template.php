@@ -8,7 +8,41 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/_inc/buyer_menu.php';
 $options = IQDEV\Options\Options::getPageOptions('buyer_rassrochka');
 
 ?>
-
+<div class="modal js-modal" data-modal-open="consultation">
+    <div class="modal__content">
+        <div class="modal__title">Получить консультацию</div>
+        <div class="modal__description">Оставьте контактные данные, и мы вам перезвоним!</div>
+        <form class="modal__form js-form" action="/?ajaxAction=formInstallment" data-name="consultation">
+            <div class="modal__input">
+                <div class="input js-input"><input class="input__field" type="text" name="name" placeholder="Имя"
+                                                   data-validate="required,name"/>
+                    <div class="input__error"></div>
+                </div>
+            </div>
+            <div class="modal__input">
+                <div class="input js-input"><input class="input__field" type="text" name="phone" placeholder="Телефон"
+                                                   data-validate="required,phone" data-masking="phone"/>
+                    <div class="input__error"></div>
+                </div>
+            </div>
+            <div class="modal__checkbox">
+                <div class="checkbox js-checkbox"><label class="checkbox__label">
+                        <input class="checkbox__field" type="checkbox" data-validate="required"/>
+                        <div class="checkbox__custom checkbox__custom--border"></div>
+                        <div class="checkbox__text">Подтверждаю согласие с<a class="checkbox__link" href="#"
+                                                                             target="_blank">
+                                политикой обработки персональных данных</a></div>
+                    </label>
+                    <div class="checkbox__error"></div>
+                </div>
+            </div>
+            <div class="modal__response"></div>
+            <div class="modal__button">
+                <button class="button button--primary" type="submit"><span>Отправить</span></button>
+            </div>
+        </form>
+    </div>
+</div>
 <section class="section mt-medium mb-medium">
     <div class="container">
         <div class="separate-paragraph">

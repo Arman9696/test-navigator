@@ -177,6 +177,47 @@ class FormsHandler
     }
 
     /**
+     * Запись на консультацию
+     *
+     * @param $aData
+     *
+     * @return mixed
+     */
+    public static function installmentAjaxAction(array $aData)
+    {
+        try {
+            global $USER;
+            $sPhone = $aData['phone'];
+
+            $aProperties = [
+                'PHONE'=>$sPhone
+            ];
+
+            if (!self::issetIblockElement('installment', 'CODE', 'PHONE', $sPhone)) {
+                throw new \RuntimeException('Вы уже оставили заявку,ждите когда с вами свяжутся!');
+            } else {
+                $iID = self::addIblockElement('installment', $aData, $aProperties);
+            }
+
+            if ($iID <= 0) {
+                throw new \RuntimeException($USER->LAST_ERROR);
+            }
+            $arResult = [
+                'status'=>true,
+                'name'=>$aData['name'],
+                'phone'=>$aData['phone'],
+                'grecaptcha'=>$aData['grecaptcha']
+            ];
+        } catch (\Throwable $e) {
+            $arResult = [
+                'status'=>false,
+                'message' =>$e->getMessage(),
+            ];
+        }
+        return $arResult;
+    }
+
+    /**
      * Записывает заявки на подписку
      *
      * @param $aData
